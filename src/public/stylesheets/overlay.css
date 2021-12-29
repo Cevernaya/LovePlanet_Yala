@@ -1,0 +1,134 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( 3px );
+
+    transition: all 0.3s;
+}
+
+.popup_box {
+    background: rgba( 255, 240, 240, 0.7 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 100px );
+    -webkit-backdrop-filter: blur( 100px );
+    border-radius: 30px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.popup_review {
+    margin-top: 5%;
+    width: 700px;
+    height: 82%;
+
+    padding: 20px;
+}
+
+.popup_review_header {
+    display: flex;
+
+    margin-bottom: 40px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.popup_review_userinfo {
+    font-size: 50px;
+    color: dimgray;
+
+    padding-left: 30px;
+
+    display: flex;
+    align-items: center;
+}
+
+.popup_review_userphoto {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.popup_review_star {
+    width: 160px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
+    margin-left: 30px;
+}
+
+
+.popup_review_star10 { background-image: url('/images/stars/10.png'); }
+.popup_review_star9 { background-image: url('/images/stars/9.png'); }
+.popup_review_star8 { background-image: url('/images/stars/8.png'); }
+.popup_review_star7 { background-image: url('/images/stars/7.png'); }
+.popup_review_star6 { background-image: url('/images/stars/6.png'); }
+.popup_review_star5 { background-image: url('/images/stars/5.png'); }
+.popup_review_star4 { background-image: url('/images/stars/4.png'); }
+.popup_review_star3 { background-image: url('/images/stars/3.png'); }
+.popup_review_star2 { background-image: url('/images/stars/2.png'); }
+.popup_review_star1 { background-image: url('/images/stars/1.png'); }
+
+.popup_review_body{
+    margin-bottom: 30px;
+}
+
+.popup_review_body textarea {
+    width: 86%;
+    margin-left: 5%;
+    padding: 2%;
+    height: 500px;
+
+    border: 2px solid dimgray;
+    border-radius: 20px;
+    resize: none;
+
+    background-color: rgb(255, 255, 255, 0.5);
+
+    font-size: 30px;
+    line-height: 45px;
+    font-family: 'proxima-nova', 'proxima-nova-extra-condensed',  'YiSunShinDotumM', monospace;
+    
+}
+textarea::selection {
+    color: white;
+    background: black;
+}
+
+.popup_review_footer {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-right: 5%;
+}
+
+.popup_button {
+    background-color: dimgray;
+    height: 40px;
+    width: 100px;
+
+    border-radius: 20px;
+    text-align: center;
+    line-height: 40px;
+
+    color: white;
+    font-size: 26px;
+
+    margin-left: 10px;
+
+    cursor: pointer;
+}
+
+.by {
+    font-size: 25px;
+    color: gray;
+    margin-left: 25px;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/menu_template.css">
+    <link rel="stylesheet" href="stylesheets/users.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="full">
+        <div class="menu">
+            <div class="menu_box">
+                    
+                <div class="menu_top">
+                    <p id="menu_top_text">🤍 Love Planet</p>
+                    <img id="menu_top_image" src="images/user/05.jpg">
+                </div>
+                <div class="menu_list">
+                    <ul id="menu_list_wrapper">
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/announce">Notice</a></li>
+                        <hr>
+                        <li><a href="/reviews">Recent Reviews</a></li>
+                        <li><a href="/lovecoin">Lovecoin</a></li>
+                        <li><a href="/users">User Management</a></li>
+                        <hr>
+                        <li><a href="/systemDocument">System Document</a></li>
+                        <li><a href="/systemFeedback">System Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content_wrapper">
+                <div class="content_row">
+                    <div id="dashboard_users" class="dashboard_box">
+                        <div class="dashboard_title">Users</div>
+                        <div class="dashboard_button" onclick="location.href='/newUser'">유저 추가하기</div>
+                        
+                        <ul>
+                            <li onclick="location.href='/userShow'">
+                                <img class="user_image" src="/images/user/03.jpg">
+                                <div class="user_box">
+                                    <div class="user_info">
+                                        <p>이종수</p>
+                                        <img class="user_grade_image" src="/images/grades/grade02.png">
+                                        <p class="user_moreinfo">만 30세 / 서울특별시 관악구</p>
+                                    </div>
+                                    <div class="user_text">
+                                        2052년 11월 21일 가입. 누적 리뷰 수 903개. 평균 평점 낮음.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <img class="user_image" src="/images/user/05.jpg">
+                                <div class="user_box">
+                                    <div class="user_info">
+                                        <p>Jessica</p>
+                                        <img class="user_grade_image" src="/images/grades/crown.png">
+                                        <p class="user_moreinfo">만 26세 / 서울특별시 용산구</p>
+                                    </div>
+                                    <div class="user_text">
+                                        20XX년 4월 13일 가입. 누적 리뷰 수 3,090개. 평균 평점 높음.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <img class="user_image" src="/images/user/04.jpg">
+                                <div class="user_box">
+                                    <div class="user_info">
+                                        <p>댕청이</p>
+                                        <img class="user_grade_image" src="/images/grades/sapphire.png">
+                                        <p class="user_moreinfo">만 29세 / 김포시 김포본동</p>
+                                    </div>
+                                    <div class="user_text">
+                                        20XX년 8월 9일 가입. 누적 리뷰 수 13,392개. 평균 평점 높음.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <img class="user_image" src="/images/user/01.jpg">
+                                <div class="user_box">
+                                    <div class="user_info">
+                                        <p>자니</p>
+                                        <img class="user_grade_image" src="/images/grades/medal1.png">
+                                        <p class="user_moreinfo">만 29세 / 고양시 일산동구</p>
+                                    </div>
+                                    <div class="user_text">
+                                        20XX년 8월 9일 가입. 누적 리뷰 수 543개. 평균 평점 낮음.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <img class="user_image" src="/images/user/02.jpg">
+                                <div class="user_box">
+                                    <div class="user_info">
+                                        <p>존버</p>
+                                        <img class="user_grade_image" src="/images/grades/jewel.png">
+                                        <p class="user_moreinfo">만 28세 / 서울특별시 강동구</p>
+                                    </div>
+                                    <div class="user_text">
+                                        20XX년 2월 28일 가입. 누적 리뷰 수 793개. 평균 평점 중간.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <img class="user_image" src="/images/user/02.jpg">
+                                <div class="user_box">
+                                    <div class="user_info">
+                                        <p>씹년지기</p>
+                                        <img class="user_grade_image" src="/images/grades/grade02.png">
+                                        <p class="user_moreinfo">만 30세 / 서울특별시 관악구</p>
+                                    </div>
+                                    <div class="user_text">
+                                        20XX년 7월 31일 가입. 누적 리뷰 수 839개. 평균 평점 높음.
+                                    </div>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        
+
+    </div>
+
+</body>
+</html>

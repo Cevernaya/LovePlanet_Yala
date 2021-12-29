@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/menu_template.css">
+    <link rel="stylesheet" href="stylesheets/announce.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="full">
+        <div class="menu">
+            <div class="menu_box">
+                    
+                <div class="menu_top">
+                    <p id="menu_top_text">🤍 Love Planet</p>
+                    <img id="menu_top_image" src="images/user/05.jpg">
+                </div>
+                <div class="menu_list">
+                    <ul id="menu_list_wrapper">
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/announce">Notice</a></li>
+                        <hr>
+                        <li><a href="/reviews">Recent Reviews</a></li>
+                        <li><a href="/lovecoin">Lovecoin</a></li>
+                        <li><a href="/users">User Management</a></li>
+                        <hr>
+                        <li><a href="/systemDocument">System Document</a></li>
+                        <li><a href="/systemFeedback">System Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content_wrapper">
+                <div class="content_row">
+                    <div id="dashboard_announce" class="dashboard_box">
+                        <div class="dashboard_title"><img id="dashboard_announce_logo" src="/images/notice.png">Notice</div>
+                        <ul>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">김민수 회원 500코인 입금 - 전 여친 후기 삭제 요청</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">김수지 회원 VIP 대상 악성 후기 5회 작성 - 블랙리스트 명단 추가</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">최열심 회원 5000코인 입금 - 슈퍼 등업 및 관리자 자격 요청 (심사 중)</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">루삥뽕 회원 300코인 입금 - CC였던 후배 후기 삭제 요청</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">박중독 회원 500포인트 지급 - 월 리뷰 100회 등록/열심회원</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">이등업 회원 신규회원 등록 - 플래티넘 기본 등급(심사중)</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">김주작 회원 강등/경고 - 중복 아이디 개설로 주작신고 (검토 중)</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">손민수 회원 프리미엄 멤버십 가입 - 1억 코인 입금 확인 </div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">11월 이벤트 공지 - 리뷰 1건당 10코인 추가 지급/ 포토 리뷰 50코인 추가</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            <li>
+                                <div class="announce_header" onclick="toggleBody(this)">
+                                    <img class="announce_icon" src="/images/user/02.jpg">
+                                    <div class="announce_title">11/27 Q&A 2849건 답변 대기 중 - 회원들 불만 폭주</div>
+                                </div>
+                                <div class="announce_body" style="display: none;"></div>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        
+
+    </div>
+
+    <script type="text/javascript" src="/javascripts/announce.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/menu_template.css">
+    <link rel="stylesheet" href="stylesheets/lovecoin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="full">
+        <div class="menu">
+            <div class="menu_box">
+                    
+                <div class="menu_top">
+                    <p id="menu_top_text">🤍 Love Planet</p>
+                    <img id="menu_top_image" src="images/user/05.jpg">
+                </div>
+                <div class="menu_list">
+                    <ul id="menu_list_wrapper">
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/announce">Notice</a></li>
+                        <hr>
+                        <li><a href="/reviews">Recent Reviews</a></li>
+                        <li><a href="/lovecoin">Lovecoin</a></li>
+                        <li><a href="/users">User Management</a></li>
+                        <hr>
+                        <li><a href="/systemDocument">System Document</a></li>
+                        <li><a href="/systemFeedback">System Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content_row">
+                <div id="chart_wrapper" class="dashboard_box">
+                    <div class="dashboard_title">러브코인 LVC</div>
+                    <div id="chart_header">
+                        <p>현재 가격: $ 5.0893 / 24시간 전 대비 </p><p style="color:red;">▼0.012$ (1.43%)</p>
+                    </div>
+                    <div id="chart">
+                        <canvas id="lovecoin_chart"></canvas>
+                    </div>
+                </div>
+                <div id="chart_order" class="dashboard_box">
+                    <div class="dashboard_semititle">주문</div>
+                    <ul class="table_top">
+                        <li>
+                            <div class="order_top">가격</div>
+                            <div class="order_top">주문량</div>
+                        </li>
+                    </ul>
+                    <ul class="table_content">
+                        <li>
+                            <div class="order_content bg_blue">5.0223</div>
+                            <div class="order_content">129387</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_blue">5.0222</div>
+                            <div class="order_content">50391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_blue">5.0221</div>
+                            <div class="order_content">90391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_blue">5.0220</div>
+                            <div class="order_content">120391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_blue">5.0219</div>
+                            <div class="order_content">80391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_blue">5.0218</div>
+                            <div class="order_content">120391</div>
+                        </li>
+
+                        <li>
+                            <div class="order_content bg_red">5.0217</div>
+                            <div class="order_content">108391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_red">5.0216</div>
+                            <div class="order_content">5391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_red">5.0215</div>
+                            <div class="order_content">120391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_red">5.0214</div>
+                            <div class="order_content">12315</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_red">5.0213</div>
+                            <div class="order_content">113391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_red">5.0212</div>
+                            <div class="order_content">90391</div>
+                        </li>
+                        <li>
+                            <div class="order_content bg_red">5.0211</div>
+                            <div class="order_content">120391</div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="/javascripts/coin.js"></script>
+
+    <script>
+        const lovecoin_chart = document.getElementById('lovecoin_chart');
+        const lovecoin_chart_sizer = () => {
+            var parentRect = lovecoin_chart.parentNode.getBoundingClientRect();
+            lovecoin_chart.width = parentRect.width;
+            lovecoin_chart.height = parentRect.height;
+        };
+        lovecoin_chart_sizer();
+    </script>
+
+</body>
+</html>
