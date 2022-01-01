@@ -2,9 +2,17 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 var logger = require('morgan');
+const session = require('express-session');
+require('dotenv').config()
 
-var indexRouter = require('./routes/index');
+const sqlite = require('better-sqlite3');
+const db = new sqlite(path.join(__dirname, 'database', 'database.db'));
+
+var viewsRouter = require('./routes/viewpage');
+var dataRouter = require('./routes/data')(db);
+var sessionRouter = require('./routes/session')
 
 var app = express();
 
@@ -16,9 +24,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+}))
 
-app.use('/', indexRouter);
+app.use('/', viewsRouter);
+app.use('/data', dataRouter);
+app.use('/session', sessionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -33,7 +50,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send({ success: false, error: err });
+  console.error(err);
 });
 
 module.exports = app;
