@@ -125,7 +125,6 @@ router.post('/writeReview', (req, res) => {
     const rating = req.body.rating
     const body = req.body.body
 
-    console.log(to_user)
     const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
     if(!toUserData) {
         res.send({
@@ -142,7 +141,6 @@ router.post('/writeReview', (req, res) => {
         return
     }
 
-    console.log('hi')
     const runResult = db.prepare(`
         INSERT INTO reviews
         (from_user, to_user, rating, body, locked) VALUES
@@ -152,6 +150,48 @@ router.post('/writeReview', (req, res) => {
     res.send({
         success: true,
         result: runResult
+    })
+
+})
+
+router.get('/nowLovecoin', (req, res) => {
+    const user_id = req.session.user_id
+    const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
+
+    res.send({
+        success: true,
+        nowLovecoin: nowLovecoin
+    })
+})
+
+router.post('/addLovecoin', (req, res) => {
+    const user_id = req.session.user_id
+    const diffLovecoin = req.body.diffLovecoin
+
+    const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
+    const afterLovecoin = nowLovecoin + diffLovecoin
+    console.log(afterLovecoin, nowLovecoin, diffLovecoin)
+
+    if(afterLovecoin < 0) {
+        res.send({
+            success: false,
+            message: '러브코인이 적어 작업을 수행할 수 없습니다!',
+            nowLovecoin: nowLovecoin
+        })
+        return
+    }
+
+    db.prepare(`
+        UPDATE users
+        SET lovecoin=${afterLovecoin}
+        WHERE user_id=${user_id}
+    `).run()
+
+    const result = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
+
+    res.send({
+        success: true,
+        nowLovecoin: result
     })
 
 })
