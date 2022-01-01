@@ -55,6 +55,23 @@ router.get('/userData', (req, res) => {
 
 router.get('/reviews', (req, res) => {
     const to_user = req.query.to_user
+
+    const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
+    if(!toUserData) {
+        res.send({
+            success: false,
+            message: '해당 유저가 존재하지 않습니다!'
+        })
+        return
+    }
+    else if(!toUserData[0].movie_character && to_user != req.session.user_id) {
+        res.send({
+            success: false,
+            message: '다른 실제 인물의 리뷰를 볼 수 없습니다!'
+        })
+        return
+    }
+
     const rows = db.prepare(`
         SELECT 
             r.review_id review_id,
@@ -72,6 +89,8 @@ router.get('/reviews', (req, res) => {
         ON r.to_user = tu.user_id
         WHERE r.to_user=${to_user}
     `).all();
+    
+
     const filtered = rows.map(row => {
         if(row.review_locked) {
             row.review_rating = 0;
@@ -86,18 +105,55 @@ router.get('/reviews', (req, res) => {
 })
 
 router.get('/notices', (req, res) => {
-    const invitation_code = req.session.invitation_code;
+    const user_id = req.session.user_id;
     const rows = db.prepare(`
         SELECT n.title title, n.body body, n.notice_id notice_id
         FROM notices n
         JOIN users u
         ON n.user_id = u.user_id
-        WHERE u.invitation_code='${invitation_code}'
+        WHERE u.user_id='${user_id}'
     `).all();
     res.send({
         success: true,
         notices: rows
     })
+})
+
+router.post('/writeReview', (req, res) => {
+    const from_user = req.session.user_id
+    const to_user = req.body.to_user
+    const rating = req.body.rating
+    const body = req.body.body
+
+    console.log(to_user)
+    const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
+    if(!toUserData) {
+        res.send({
+            success: false,
+            message: '해당 유저가 존재하지 않습니다!'
+        })
+        return
+    }
+    else if(!toUserData[0].movie_character) {
+        res.send({
+            success: false,
+            message: '실제 인물에게 리뷰를 달 수 없습니다!'
+        })
+        return
+    }
+
+    console.log('hi')
+    const runResult = db.prepare(`
+        INSERT INTO reviews
+        (from_user, to_user, rating, body, locked) VALUES
+        (${from_user}, ${to_user}, ${rating}, '${body}', 0)
+    `).run()
+
+    res.send({
+        success: true,
+        result: runResult
+    })
+
 })
 
 
