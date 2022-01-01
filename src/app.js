@@ -7,8 +7,11 @@ var logger = require('morgan');
 const session = require('express-session');
 require('dotenv').config()
 
+const sqlite = require('better-sqlite3');
+const db = new sqlite(path.join(__dirname, 'database', 'database.db'));
+
 var viewsRouter = require('./routes/viewpage');
-var dataRouter = require('./routes/data');
+var dataRouter = require('./routes/data')(db);
 var sessionRouter = require('./routes/session')
 
 var app = express();
