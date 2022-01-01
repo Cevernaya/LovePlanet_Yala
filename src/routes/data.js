@@ -30,6 +30,11 @@ router.get('/login', (req, res) => {
     }
 })
 
+router.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.send({success: true})
+})
+
 router.get('/movieChars', (req, res) => {
     const rows = db.prepare(`SELECT * FROM users WHERE movie_character=1`).all();
     res.send({
@@ -194,6 +199,41 @@ router.post('/addLovecoin', (req, res) => {
         nowLovecoin: result
     })
 
+})
+
+router.get('/getMovieReviews', (req, res) => {
+    const user_id = req.session.user_id
+    const reviews = db.prepare(`SELECT * FROM movie_reviews`).all()
+
+    const filtered = reviews.map(review => {
+        if(review.hidden && review.user_id != user_id) {
+            review.body = "비밀 댓글입니다."
+        }
+        return review
+    })
+
+    res.send({
+        success: true,
+        reviews: filtered
+    })
+})
+
+router.post('/writeMovieReview', (req, res) => {
+    const user_id = req.session.user_id
+    const user_name = req.body.user_name
+    const body = req.body.body
+    const hidden = req.body.hidden
+
+    const runResult = db.prepare(`
+        INSERT INTO movie_reviews
+        (user_id, user_name, body, hidden) VALUES
+        (${user_id}, '${user_name}', '${body}', ${hidden})
+    `).run()
+
+    res.send({
+        success: true,
+        result: runResult
+    })
 })
 
 
