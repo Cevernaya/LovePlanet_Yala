@@ -2,6 +2,7 @@ const express = require('express');
 
 /** INITIALIZE DATABASE **/
 
+
 const routerGenerator = (db) => {
     const router = express.Router();
 
