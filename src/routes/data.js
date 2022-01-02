@@ -39,7 +39,7 @@ const routerGenerator = (db) => {
     
     router.get('/userData', (req, res) => {
         const invitation_code = req.session.invitation_code
-        const user_id = req.session.user_id
+        const user_id = req.query.user_id || req.session.user_id
         const user = db.prepare(`SELECT * FROM users WHERE user_id=${user_id}`).all()
         if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
             res.send({success: false})
@@ -56,7 +56,7 @@ const routerGenerator = (db) => {
         const to_user = req.query.to_user
     
         const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
-        if(!toUserData) {
+        if(toUserData.length == 0) {
             res.send({
                 success: false,
                 message: '해당 유저가 존재하지 않습니다!'
@@ -79,6 +79,7 @@ const routerGenerator = (db) => {
                 r.locked review_locked,
                 fu.rank fu_rank,
                 fu.name fu_name,
+                fu.profile_image fu_profile_image,
                 tu.rank tu_rank,
                 tu.name tu_name
             FROM reviews r
@@ -125,7 +126,7 @@ const routerGenerator = (db) => {
         const body = req.body.body
     
         const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
-        if(!toUserData) {
+        if(toUserData.length == 0) {
             res.send({
                 success: false,
                 message: '해당 유저가 존재하지 않습니다!'
