@@ -82,7 +82,6 @@ h3 {
     text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
     margin-bottom: 10px;
 
-    cursor: pointer;
 }
 
 .dashboard_paragraph {
@@ -219,6 +218,7 @@ h3 {
     flex: 1;
     font-size: 25px;
     padding-top: 10px;
+    
 }
 
 .review_star {
@@ -231,16 +231,11 @@ h3 {
     background-size: cover;
 }
 
-.star10 { background-image: url('/images/stars/10.png'); }
-.star9 { background-image: url('/images/stars/9.png'); }
-.star8 { background-image: url('/images/stars/8.png'); }
-.star7 { background-image: url('/images/stars/7.png'); }
-.star6 { background-image: url('/images/stars/6.png'); }
-.star5 { background-image: url('/images/stars/5.png'); }
-.star4 { background-image: url('/images/stars/4.png'); }
-.star3 { background-image: url('/images/stars/3.png'); }
-.star2 { background-image: url('/images/stars/2.png'); }
-.star1 { background-image: url('/images/stars/1.png'); }
+.star5 { background-image: url('/images/stars/10.png'); }
+.star4 { background-image: url('/images/stars/8.png'); }
+.star3 { background-image: url('/images/stars/6.png'); }
+.star2 { background-image: url('/images/stars/4.png'); }
+.star1 { background-image: url('/images/stars/2.png'); }
 
 #user_info {
     display: flex;
