@@ -39,7 +39,22 @@ const routerGenerator = (db) => {
     
     router.get('/userData', (req, res) => {
         const invitation_code = req.session.invitation_code
-        const user_id = req.query.user_id || req.session.user_id
+        const user_id = req.query.user_id
+        const user = db.prepare(`SELECT * FROM users WHERE user_id=${user_id}`).all()
+        if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
+            res.send({success: false})
+            return
+        }
+        
+        res.send({
+            success: true,
+            sessionUser: user
+        })
+    })
+
+    router.get('/sessionUserData', (req, res) => {
+        const invitation_code = req.session.invitation_code
+        const user_id = req.session.user_id
         const user = db.prepare(`SELECT * FROM users WHERE user_id=${user_id}`).all()
         if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
             res.send({success: false})
