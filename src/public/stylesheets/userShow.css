@@ -35,11 +35,6 @@ h3 {
 
 .content_wrapper {
     overflow-y: scroll;
-
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
-    -webkit-mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: top;
 }
 
 .content_row:nth-child(1) {
