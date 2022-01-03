@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -27,7 +27,7 @@
 .popup_review {
     margin-top: 5%;
     width: 700px;
-    height: 82%;
+    height: 850px;
 
     padding: 20px;
 }
@@ -42,13 +42,15 @@
 }
 
 .popup_review_userinfo {
-    font-size: 50px;
-    color: dimgray;
-
     padding-left: 30px;
 
     display: flex;
     align-items: center;
+}
+
+.from {
+    font-size: 50px;
+    color: dimgray;
 }
 
 .popup_review_userphoto {
@@ -66,37 +68,32 @@
 }
 
 
-.popup_review_star10 { background-image: url('/images/stars/10.png'); }
-.popup_review_star9 { background-image: url('/images/stars/9.png'); }
-.popup_review_star8 { background-image: url('/images/stars/8.png'); }
-.popup_review_star7 { background-image: url('/images/stars/7.png'); }
-.popup_review_star6 { background-image: url('/images/stars/6.png'); }
-.popup_review_star5 { background-image: url('/images/stars/5.png'); }
-.popup_review_star4 { background-image: url('/images/stars/4.png'); }
-.popup_review_star3 { background-image: url('/images/stars/3.png'); }
-.popup_review_star2 { background-image: url('/images/stars/2.png'); }
-.popup_review_star1 { background-image: url('/images/stars/1.png'); }
+.popup_review_star5 { background-image: url('/images/stars/10.png'); }
+.popup_review_star4 { background-image: url('/images/stars/8.png'); }
+.popup_review_star3 { background-image: url('/images/stars/6.png'); }
+.popup_review_star1 { background-image: url('/images/stars/2.png'); }
+.popup_review_star2 { background-image: url('/images/stars/4.png'); }
 
 .popup_review_body{
     margin-bottom: 30px;
+    height: 580px;
 }
 
 .review_textarea {
     width: 86%;
+    height: calc(100% - 32px);
     margin-left: 5%;
     padding: 2%;
-    height: 500px;
 
     border: 2px solid dimgray;
     border-radius: 20px;
-    resize: none;
 
     background-color: rgb(255, 255, 255, 0.5);
 
     font-size: 30px;
     line-height: 45px;
     font-family: 'proxima-nova', 'proxima-nova-extra-condensed',  'YiSunShinDotumM', monospace;
-    
+    overflow-y: auto;
 }
 textarea::selection {
     color: white;
@@ -127,8 +124,56 @@ textarea::selection {
     cursor: pointer;
 }
 
-.by {
+.to {
     font-size: 25px;
     color: gray;
     margin-left: 25px;
+}
+
+@media (max-width: 1920px) {
+    .popup_review {
+        margin-top: 7vh;
+        height: 80vh;
+    }
+
+    .popup_review_header {
+        margin-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .popup_review_body {
+        height: 67%;
+        margin-bottom: 10px;
+    }
+
+    .review_textarea {
+        font-size: 24px;
+        line-height: 36px;
+    }
+    
+    .popup_review_userphoto {
+        width: 90px;
+        height: 90px;
+    }
+
+    .from {
+        font-size: 40px;
+    }
+
+    .popup_review_star {
+        width: 120px;
+        height: 30px;
+    }
+
+    .popup_button {
+        width: 70px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 20px;
+    }
+
+    .to {
+        font-size: 20px;
+    }
+
 }
