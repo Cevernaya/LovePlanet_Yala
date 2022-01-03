@@ -80,7 +80,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
 
             doc_review_list.appendChild(doc_list)
 
-
+            
         }
     })
     .catch((error) => {

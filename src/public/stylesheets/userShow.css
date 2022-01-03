@@ -155,7 +155,7 @@ h3 {
 }
 
 #dashboard_reviews ul li {
-    display: flex;
+    height: 114px;
     background-color: rgb(255, 234, 234, 0);
     transition: all 0.3s;
 
@@ -172,6 +172,7 @@ h3 {
 }
 
 #dashboard_reviews ul li .user_image {
+    float: left;
     width: 100px;
     height: 100px;
     border-radius: 100%;
@@ -181,20 +182,17 @@ h3 {
 }
 
 #dashboard_reviews ul li .review_box {
-    flex: 1;
+    width: calc(100% - 104px);
     height: 100px;
 
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
+    padding-left: 124px;
+    margin-top: 10px;
 
     color: rgb(123, 123, 123);
 }
 
 .review_box .review_userinfo {
-    
-    flex: 1;
-
+    height: 50px;
     display: flex;
     align-items: center;
     font-size: 35px;
@@ -215,10 +213,13 @@ h3 {
 }
 
 .review_box .review_text {
-    flex: 1;
+    height: 40px;
     font-size: 25px;
     padding-top: 10px;
-    
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .review_star {

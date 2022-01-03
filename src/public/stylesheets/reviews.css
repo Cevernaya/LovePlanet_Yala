@@ -140,16 +140,16 @@
     height: 100px;
 
     padding-left: 20px;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 
     color: rgb(123, 123, 123);
 }
 
 .review_box .review_userinfo {
     
-    flex: 1;
-
+    /* flex: 1; */
+    height: 50px;
     display: flex;
     align-items: center;
     font-size: 35px;
@@ -171,9 +171,14 @@
 }
 
 .review_box .review_text {
-    flex: 1;
+    /* flex: 1; */
+    height: 40px;
     font-size: 25px;
     padding-top: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .review_star {
