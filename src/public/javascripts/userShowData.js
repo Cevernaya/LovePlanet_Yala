@@ -30,23 +30,32 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_img.className = "profile_img"
     user_info.insertBefore(user_img, user_body)
 
-    const review_toimg = document.getElementById("review_toimg")
-    review_toimg.setAttribute("src", `/images/user/${user.profile_image}`)
-    const review_torank = document.getElementById("review_torank")
-    review_torank.setAttribute("src", `/images/grades/grade${user.rank}.png`)
-    const review_to = document.getElementById("review_to")
-    review_to.innerHTML = `To. ${user.name}`
+    if (user.movie_character == 1) {
+        const dashboard_title = document.querySelector(".dashboard_title")
+        const write_button = document.createElement("div")
+        write_button.innerHTML = "Write"
+        write_button.setAttribute("onclick", "popupReviewOn()")
+        write_button.className = "write_button"
+        dashboard_title.appendChild(write_button)
 
-    fetch("/data/sessionUserData")
-    .then((response) => {
-        return response.json()
-    })
-    .then((response) => {
-        const writer = response.sessionUser[0]
-
-        const review_from = document.getElementById("review_from")
-        review_from.innerHTML = `From. ${writer.name}`
-    })    
+        const review_toimg = document.getElementById("review_toimg")
+        review_toimg.setAttribute("src", `/images/user/${user.profile_image}`)
+        const review_torank = document.getElementById("review_torank")
+        review_torank.setAttribute("src", `/images/grades/grade${user.rank}.png`)
+        const review_to = document.getElementById("review_to")
+        review_to.innerHTML = `To. ${user.name}`
+    
+        fetch("/data/sessionUserData")
+        .then((response) => {
+            return response.json()
+        })
+        .then((response) => {
+            const writer = response.sessionUser[0]
+    
+            const review_from = document.getElementById("review_from")
+            review_from.innerHTML = `From. ${writer.name}`
+        })    
+    }
 
     return user.user_id
 })
