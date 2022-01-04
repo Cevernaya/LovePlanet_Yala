@@ -19,7 +19,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_header.appendChild(user_rank)
 
     const user_text = document.querySelector(".user_text")
-    user_text.innerHTML = `${user.age}, ${user.address} 거주</br>user."가입일자" 가입.</br>${user.movie_character == 0 ? `${user.lovecoin} coin` : ""}`
+    user_text.innerHTML = `${user.age}, ${user.address} 거주<br>user."가입일자" 가입.<br>${user.movie_character == 0 ? `${user.lovecoin} coin` : ""}`
 
     const user_info = document.getElementById("user_info")
     const user_body = document.querySelector(".user_body")
