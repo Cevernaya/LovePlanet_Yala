@@ -19,16 +19,34 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_header.appendChild(user_rank)
 
     const user_text = document.querySelector(".user_text")
-    user_text.innerHTML = `${user.age}, ${user.address} 거주`
+    user_text.innerHTML = `${user.age}, ${user.address} 거주</br>user."가입일자" 가입.</br>${user.movie_character == 0 ? `${user.lovecoin} coin` : ""}`
 
     const user_info = document.getElementById("user_info")
     const user_body = document.querySelector(".user_body")
+
     const user_img = document.createElement("img")
     user_img.setAttribute("src", `/images/user/${user.profile_image}`)
     user_img.setAttribute("alt", "profile image of user")
     user_img.className = "profile_img"
     user_info.insertBefore(user_img, user_body)
-    
+
+    const review_toimg = document.getElementById("review_toimg")
+    review_toimg.setAttribute("src", `/images/user/${user.profile_image}`)
+    const review_torank = document.getElementById("review_torank")
+    review_torank.setAttribute("src", `/images/grades/grade${user.rank}.png`)
+    const review_to = document.getElementById("review_to")
+    review_to.innerHTML = `To. ${user.name}`
+
+    fetch("/data/sessionUserData")
+    .then((response) => {
+        return response.json()
+    })
+    .then((response) => {
+        const writer = response.sessionUser[0]
+
+        const review_from = document.getElementById("review_from")
+        review_from.innerHTML = `From. ${writer.name}`
+    })    
 
     return user.user_id
 })
@@ -42,7 +60,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         const doc_review_list = document.getElementById("js_reviewlist")
         const body = document.querySelector("body")
 
-        let index = 0
+        let index = 1
 
         for (const current of review_list) {
             const doc_fromname = document.createElement("p")

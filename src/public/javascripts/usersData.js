@@ -23,6 +23,7 @@ fetch("/data/sessionUserData")
     doc_info.className = "user_info"
 
     const doc_text = document.createElement("div")
+    doc_text.innerHTML = `user."가입일자" 가입.`
     doc_text.className = "user_text"
 
     const doc_box = document.createElement("div")

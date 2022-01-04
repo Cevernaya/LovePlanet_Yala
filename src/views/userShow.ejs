@@ -55,7 +55,7 @@
                 <div id="dashboard_reviews" class="dashboard_box">
                     <div class="dashboard_title">
                         <p class="title_text">Reviews</p>
-                        <div class="write_button" onclick="writeReview">Write</div>
+                        <div class="write_button" onclick="popupReviewOn()">Write</div>
                     </div>
                     <ul id="js_reviewlist">
                         <!-- data by userShowData.js -->
@@ -85,7 +85,30 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script type="text/javascript" src="/javascripts/overlay.js"></script>
-
+    
+    <div id="overlayReview" class="overlay" style="opacity: 0; display: none;">
+        <div class="popup_box popup_review">
+            <div class="popup_review_header">
+                <img id="review_toimg" class="popup_review_userphoto" alt="profile image of current page user">
+                <div class="stack_col">
+                    <div class="popup_review_userinfo">
+                        <p id="review_to" class="from"></p>
+                        <img id="review_torank" class="user_grade_image" style="height: 50px; width: 50px;">
+                        <p id="review_from" class="to"></p>
+                    </div>
+                    <div class="popup_review_star"></div>
+                </div>
+            </div>
+            <div class="popup_review_body">
+                <textarea class="review_textarea"></textarea>
+            </div>
+            <div class="popup_review_footer">
+                <div class="popup_button" onclick="writeReview()">작성</div>
+                <div class="popup_button" onclick="popupReviewOff()">취소</div>
+            </div>
+        </div>
+    </div>
+    
 <!-- data by userShowData.js
     <div class="overlay" style="opacity: 0; display: none;">
         <div class="popup_box popup_review">
@@ -95,7 +118,7 @@
                     <div class="popup_review_userinfo">
                         <p class="from">From. 존버</p>
                         <img class="user_grade_image" src="/images/grades/crown.png" style="height: 50px; width: 50px;">
-                        <p class="to">To. 이종수</p><br>
+                        <p class="to">To. 이종수</p>
                     </div>
                     <div class="popup_review_star popup_review_star6"></div>
                 </div>
@@ -111,4 +134,5 @@
 
 </body>
 <script src="/javascripts/userShowData.js"></script>
+<script src="/javascripts/review.js"></script>
 </html>
