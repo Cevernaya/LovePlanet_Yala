@@ -12,4 +12,6 @@ const popupReviewOff = () => {
 
 const writeReview = () => {
     
+
+    popupReviewOff()
 }

@@ -85,7 +85,7 @@
     <script type="text/javascript" src="/javascripts/overlay.js"></script>
     
     <div id="overlayReview" class="overlay" style="opacity: 0; display: none;">
-        <div class="popup_box popup_review">
+        <form id="review_form" class="popup_box popup_review" method="post" action="/data/writeReview">
             <div class="popup_review_header">
                 <img id="review_toimg" class="popup_review_userphoto" alt="profile image of current page user">
                 <div class="stack_col">
@@ -94,17 +94,23 @@
                         <img id="review_torank" class="user_grade_image" style="height: 50px; width: 50px;">
                         <p id="review_from" class="to"></p>
                     </div>
-                    <div class="popup_review_star"></div>
+                    <fieldset id="review_rating">
+                        <input type="radio" name="rating" value="5" id="rate5" required><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="4" id="rate4"><label for="rate4">⭐</label>
+                        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+                        <input type="radio" name="rating" value="2" id="rate2"><label for="rate2">⭐</label>
+                        <input type="radio" name="rating" value="1" id="rate1"><label for="rate1">⭐</label>
+                    </fieldset>
                 </div>
             </div>
             <div class="popup_review_body">
-                <textarea class="review_textarea"></textarea>
+                <textarea class="review_textarea real_textarea" name="body"></textarea>
             </div>
             <div class="popup_review_footer">
-                <div class="popup_button" onclick="writeReview()">작성</div>
+                <button id="submit_button" type="submit" class="popup_button">작성</button>
                 <div class="popup_button" onclick="popupReviewOff()">취소</div>
             </div>
-        </div>
+        </form>
     </div>
     
 <!-- data by userShowData.js

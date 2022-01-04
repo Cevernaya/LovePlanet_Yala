@@ -44,6 +44,12 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         review_torank.setAttribute("src", `/images/grades/grade${user.rank}.png`)
         const review_to = document.getElementById("review_to")
         review_to.innerHTML = `To. ${user.name}`
+        const review_touser = document.createElement("input")
+        review_touser.setAttribute("type", "text")
+        review_touser.setAttribute("name", "to_user")
+        review_touser.setAttribute("value", `${user.user_id}`)
+        review_touser.setAttribute("style", "display: none;")
+        review_to.appendChild(review_touser)
     
         fetch("/data/sessionUserData")
         .then((response) => {
