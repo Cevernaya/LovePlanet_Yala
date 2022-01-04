@@ -69,14 +69,42 @@ h3 {
 }
 
 .dashboard_title {
-    color:rgb(214, 124, 146);
-    font-size: 40px;
     padding-top: 10px;
     padding-left: 29px;
     padding-bottom: 5px;
-    text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
     margin-bottom: 10px;
 
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_text {
+    color:rgb(214, 124, 146);
+    font-size: 40px;
+    text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
+}
+
+.write_button {
+    width: 120px;
+    height: 55px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 36px;
+    line-height: 55px;
+    text-align: center;
+    color: rgb(214, 124, 146);
+
+    background-color: transparent;
+    border-radius: 10px;
+    border: 4px solid rgb(214, 124, 146);
+
+    cursor: pointer;
+}
+
+.write_button:hover {
+    background-color: rgba(255, 196, 196, 0.308);
+    transform: translateY(-2px);
+    transition: 0.2s ease;
 }
 
 .dashboard_paragraph {
@@ -299,4 +327,14 @@ h3 {
 .analysis_text {
     color: inherit;
     font-size: 20px;
+}
+
+@media (max-width: 1920px) {
+    .write_button{
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 28px;
+        border: 3px solid;
+    }
 }
