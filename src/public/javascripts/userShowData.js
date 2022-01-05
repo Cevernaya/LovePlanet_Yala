@@ -93,7 +93,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
             doc_frominfo.className = "review_userinfo"
             
             const doc_text = document.createElement("div")
-            doc_text.innerHTML = current.review_body
+            doc_text.innerHTML = current.review_body.replace(/\n/g, "<br>")
             doc_text.className = "review_text"
 
             const doc_box = document.createElement("div")
@@ -149,7 +149,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
             pop_header.className = "popup_review_header"
 
             const pop_text = document.createElement("div")
-            pop_text.innerHTML = `${current.review_body}`
+            pop_text.innerHTML = `${current.review_body.replace(/\n/g, "<br>")}`
             pop_text.className = "review_textarea"
 
             const pop_body = document.createElement("div")

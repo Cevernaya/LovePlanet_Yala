@@ -329,7 +329,7 @@ h3 {
     font-size: 20px;
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1900px) {
     .write_button{
         width: 100px;
         height: 40px;

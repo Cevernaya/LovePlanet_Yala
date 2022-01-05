@@ -185,7 +185,7 @@ textarea::selection {
     text-shadow: 0 0 0 rgb(214, 124, 146);
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1900px) {
     .popup_review {
         margin-top: 7vh;
         height: 80vh;

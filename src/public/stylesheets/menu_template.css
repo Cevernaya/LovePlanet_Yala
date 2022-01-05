@@ -130,7 +130,7 @@ ul {
     box-shadow: 0 2px 4px 0 lightgrey;
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1900px) {
   .menu {
     width: 18%;
     height: 90%
