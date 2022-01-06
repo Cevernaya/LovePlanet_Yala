@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/menu_template.css">
-    <link rel="stylesheet" href="stylesheets/lovecoin.css">
+    <link rel="stylesheet" href="stylesheets/lovecoin_chart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
@@ -44,10 +44,12 @@
                 </div>
                 <div id="coin_info" class="dashboard_box">
                     <div class="dashboard_title">My Lovecoin</div>
-                    <div style="font-size: 24px; margin-bottom: 24px; padding-left: 8px;">300 LC</div>
-                    <div class="dashboard_title" id="ranking">Ranking</div>
-                    <ol>
-                        <li>박찬정: 100</li>
+                    <div id="now_lovecoin" style="font-size: 24px; margin-bottom: 24px; padding-left: 8px;">300 LC</div>
+                    <div class="dashboard_title">Bet</div>
+                    <input type="number" id="betting_coin"><button onclick="INPUTS.bet = true">Go!</button>
+                    <div class="dashboard_title" id="ranking" style="margin-top: 16px;">Ranking</div>
+                    <ol id="graph_rank">
+                        <li>박찬정: 9.7배</li>
                     </ol>
                 </div>
             </div>
@@ -56,7 +58,7 @@
 
     </div>
 
-    <script type="text/javascript" src="/javascripts/lovecoin.js"></script>
+    <script type="text/javascript" src="/javascripts/lovecoin_chart.js"></script>
 
 </body>
 </html>

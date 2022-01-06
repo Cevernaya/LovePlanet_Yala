@@ -22,6 +22,56 @@ const circleHit = (circle1, circle2) => {
     return circle1.r + circle2.r >= centerDist
 }
 
+const formatString = (num, digit) => {
+    return num.toLocaleString(undefined, {maximumFractionDigits: digit, minimumFractionDigits: digit})
+}
+
+const updateNowCoin = (diff=0) => {
+
+    fetch("/data/addLoveCoin", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({ "diffLovecoin": diff })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if(res.success) {
+            CTX.fillText(`${this.timer}`, 10, 190)
+                document.getElementById("now_lovecoin").innerText = `${formatString(res.nowLovecoin, 5)} LC`
+                NOWCOIN = res.nowLovecoin
+            }
+        })
+}
+updateNowCoin()
+
+const getRank = () => {
+    fetch("/data/rankDodge")
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            const rankContainer = document.getElementById("dodge_rank")
+            rankContainer.innerHTML = ""
+            res.ranks.map(rank => {
+                const rankElem = document.createElement("li")
+                rankElem.innerText = `${rank.nickname}: ${rank.score}`
+                rankContainer.appendChild(rankElem)
+            })
+        })
+}
+
+const sendRank = (score, name) => {
+    fetch("/data/rankDodgeAdd", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({ score, name })
+    }).then(() => getRank())
+}
+getRank()
+
 
 // INPUTS
 
@@ -143,7 +193,9 @@ class Game {
     endGame() {
         this.state = GAME_STATE.OVER
         setTimeout(() => {
-            const name = prompt(`점수: ${this.score/100}\n랭킹 등록할 이름을 입력하세요.`)
+            const name = prompt(`점수: ${this.score/100}\n랭킹 등록할 이름을 입력하세요.`) || '익명의 고수'
+            sendRank(this.score/100, name)
+            updateNowCoin(this.score/100)
         }, 1000/FPS * 3)
 
         Object.keys(keyInputs).map(key => keyInputs[key] = false)
@@ -197,7 +249,7 @@ class Game {
         CTX.textBaseline = "top"
         CTX.font = "bold 48px solid"
         CTX.fillStyle = "rgba(255, 150, 150, 1)"
-        CTX.fillText(`Score: ${this.score/100}`, 20, 20)
+        CTX.fillText(`Mining: ${this.score/100}`, 20, 20)
 
         if(this.state == GAME_STATE.INIT) {
             CTX.textAlign = "center"
