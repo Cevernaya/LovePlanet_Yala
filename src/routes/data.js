@@ -245,6 +245,49 @@ const routerGenerator = (db) => {
         })
     })
 
+    router.get('/rankDodge', (req, res) => {
+        const ranks = db.prepare(`SELECT nickname, score FROM dodge_ranking ORDER BY score DESC LIMIT 10`).all()
+        res.send({ success: true, ranks })
+    })
+
+    router.post('/rankDodgeAdd', (req, res) => {
+        const user_id = req.session.user_id
+        const name = req.body.name
+        const score = req.body.score
+
+        const runResult = db.prepare(`
+            INSERT INTO dodge_ranking
+            (user_id, nickname, score) VALUES
+            (${user_id}, '${name}', ${score})
+        `).run()
+
+        res.send({
+            success: true,
+            result: runResult
+        })
+    })
+
+    router.get('/rankGraph', (req, res) => {
+        const ranks = db.prepare(`SELECT score FROM graph_ranking ORDER BY score DESC LIMIT 10`).all()
+        res.send({ success: true, ranks })
+    })
+
+    router.post('/rankGraphAdd', (req, res) => {
+        const user_id = req.session.user_id
+        const score = req.body.score
+
+        const runResult = db.prepare(`
+            INSERT INTO graph_ranking
+            (user_id, score) VALUES
+            (${user_id}, ${score})
+        `).run()
+
+        res.send({
+            success: true,
+            result: runResult
+        })
+    })
+
     return router
 }
 

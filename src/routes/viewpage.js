@@ -18,6 +18,10 @@ router.get('/lovecoin', function(req, res, next) {
   res.render('lovecoin', { title: 'Express' });
 });
 
+router.get('/lovecoin_chart', function(req, res, next) {
+  res.render('lovecoin_chart', { title: 'Express' });
+});
+
 router.get('/users', function(req, res, next) {
   res.render('users', { title: 'Express' });
 });
