@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="stylesheets/menu_template.css">
     <link rel="stylesheet" href="stylesheets/users.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Love Planet</title>
 </head>
 <body>
     <div class="full">
@@ -18,16 +19,15 @@
                     
                 <div class="menu_top">
                     <p id="menu_top_text">🤍 Love Planet</p>
-                    <img id="menu_top_image" src="images/user/05.jpg">
+                    <img id="menu_top_image" src="images/user/02.jpg">
                 </div>
                 <div class="menu_list">
                     <ul id="menu_list_wrapper">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="/announce">Notice</a></li>
+                        <li><a href="/userShow">My page</a></li>
+                        <li><a href="/announce">Notices</a></li>
                         <hr>
-                        <li><a href="/reviews">Recent Reviews</a></li>
                         <li><a href="/lovecoin">Lovecoin</a></li>
-                        <li><a href="/users">User Management</a></li>
+                        <li><a href="/users">Users</a></li>
                         <hr>
                         <li><a href="/systemDocument">System Document</a></li>
                         <li><a href="/systemFeedback">System Feedback</a></li>
@@ -41,15 +41,13 @@
                 <div class="content_row">
                     <div id="dashboard_users" class="dashboard_box">
                         <div class="dashboard_title">Users</div>
-                        <div class="dashboard_button" onclick="location.href='/newUser'">유저 추가하기</div>
-                        
-                        <ul>
-                            <li onclick="location.href='/userShow'">
+                        <ul id="users_list">
+                            <li id="first_user" onclick="location.href='/userShow?user_id=2'">
                                 <img class="user_image" src="/images/user/03.jpg">
                                 <div class="user_box">
                                     <div class="user_info">
                                         <p>이종수</p>
-                                        <img class="user_grade_image" src="/images/grades/grade02.png">
+                                        <img class="user_grade_image" src="/images/grades/grade1.png">
                                         <p class="user_moreinfo">만 30세 / 서울특별시 관악구</p>
                                     </div>
                                     <div class="user_text">
@@ -57,12 +55,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li onclick="location.href='/userShow?user_id=3'">
                                 <img class="user_image" src="/images/user/05.jpg">
                                 <div class="user_box">
                                     <div class="user_info">
                                         <p>Jessica</p>
-                                        <img class="user_grade_image" src="/images/grades/crown.png">
+                                        <img class="user_grade_image" src="/images/grades/grade10.png">
                                         <p class="user_moreinfo">만 26세 / 서울특별시 용산구</p>
                                     </div>
                                     <div class="user_text">
@@ -70,12 +68,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li onclick="location.href='/userShow?user_id=4'">
                                 <img class="user_image" src="/images/user/04.jpg">
                                 <div class="user_box">
                                     <div class="user_info">
                                         <p>댕청이</p>
-                                        <img class="user_grade_image" src="/images/grades/sapphire.png">
+                                        <img class="user_grade_image" src="/images/grades/grade3.png">
                                         <p class="user_moreinfo">만 29세 / 김포시 김포본동</p>
                                     </div>
                                     <div class="user_text">
@@ -83,12 +81,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li onclick="location.href='/userShow?user_id=5'">
                                 <img class="user_image" src="/images/user/01.jpg">
                                 <div class="user_box">
                                     <div class="user_info">
                                         <p>자니</p>
-                                        <img class="user_grade_image" src="/images/grades/medal1.png">
+                                        <img class="user_grade_image" src="/images/grades/grade1.png">
                                         <p class="user_moreinfo">만 29세 / 고양시 일산동구</p>
                                     </div>
                                     <div class="user_text">
@@ -96,12 +94,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li onclick="location.href='/userShow?user_id=6'">
                                 <img class="user_image" src="/images/user/02.jpg">
                                 <div class="user_box">
                                     <div class="user_info">
                                         <p>존버</p>
-                                        <img class="user_grade_image" src="/images/grades/jewel.png">
+                                        <img class="user_grade_image" src="/images/grades/grade1.png">
                                         <p class="user_moreinfo">만 28세 / 서울특별시 강동구</p>
                                     </div>
                                     <div class="user_text">
@@ -109,12 +107,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li onclick="location.href='/userShow?user_id=7'">
                                 <img class="user_image" src="/images/user/02.jpg">
                                 <div class="user_box">
                                     <div class="user_info">
                                         <p>씹년지기</p>
-                                        <img class="user_grade_image" src="/images/grades/grade02.png">
+                                        <img class="user_grade_image" src="/images/grades/grade1.png">
                                         <p class="user_moreinfo">만 30세 / 서울특별시 관악구</p>
                                     </div>
                                     <div class="user_text">
@@ -135,4 +133,7 @@
     </div>
 
 </body>
+
+<script src="/javascripts/usersData.js"></script>
+
 </html>

@@ -4,32 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="stylesheets/menu_template.css">
     <link rel="stylesheet" href="stylesheets/overlay.css">
     <link rel="stylesheet" href="stylesheets/userShow.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/hnd0qtt.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Love Planet</title>
 </head>
 <body>
     <div class="full">
         <div class="menu">
             <div class="menu_box">
-                    
                 <div class="menu_top">
                     <p id="menu_top_text">🤍 Love Planet</p>
-                    <img id="menu_top_image" src="images/user/05.jpg">
+                    <img id="menu_top_image" src="images/user/02.jpg">
                 </div>
                 <div class="menu_list">
                     <ul id="menu_list_wrapper">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="/announce">Notice</a></li>
+                        <li><a href="/userShow">My page</a></li>
+                        <li><a href="/announce">Notices</a></li>
                         <hr>
-                        <li><a href="/reviews">Recent Reviews</a></li>
                         <li><a href="/lovecoin">Lovecoin</a></li>
-                        <li><a href="/users">User Management</a></li>
+                        <li><a href="/users">Users</a></li>
                         <hr>
                         <li><a href="/systemDocument">System Document</a></li>
                         <li><a href="/systemFeedback">System Feedback</a></li>
@@ -41,131 +39,37 @@
         <div class="content">
             <div class="content_row">
                 <div id="user_info" class="dashboard_box">
-                    <img src="/images/user/03.jpg" class="profile_img">
+                    <!-- data by userShowData.js-->
                     <div class="user_body">
                         <div class="user_name">
-                            <h1>이종수</h1><img src="/images/grades/grade02.png" class="user_grade_image">
+                            <!-- data by userShowData.js -->
                         </div>
                         <div class="user_text">
-                            만 30세, 서울특별시 관악구 거주<br>
-                            2052년 11월 21일 가입 / 평균 평점 1.17
+                            <!-- data by userShowData.js -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="content_row">
                 <div id="dashboard_reviews" class="dashboard_box">
-                    <div class="dashboard_title">Recent Reviews</div>
-                    <ul>
-                        <li onclick="overlayOn(0)">
+                    <div class="dashboard_title">
+                        <p class="title_text">Reviews</p>
+                    </div>
+                    <ul id="js_reviewlist">
+                        <!-- data by userShowData.js -->
+                    <!-- <li onclick="overlayOn(0)">
                             <img class="user_image" src="/images/user/02.jpg">
                             <div class="review_box">
                                 <div class="review_userinfo">
                                     <p>존버</p>
                                     <img class="user_grade_image" src="/images/grades/crown.png">
-                                    <div class="review_star star6"></div>
+                                    <div class="review_star star3"></div>
                                 </div>
                                 <div class="review_text">
                                     항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데...
                                 </div>
                             </div>
-                        </li>
-                        <li onclick="overlayOn(1)">
-                            <img class="user_image" src="/images/user/02.jpg">
-                            <div class="review_box">
-                                <div class="review_userinfo">
-                                    <p>씹년지기</p>
-                                    <img class="user_grade_image" src="/images/grades/medal1.png">
-                                    <div class="review_star star4"></div>
-                                </div>
-                                <div class="review_text">
-                                    얘랑 십 년 넘게 알고 지내다가 손절했음. 씹팔 조까튼 새끼. 자기 필요할 때만...
-                                </div>
-                            </div>
-                        </li>
-                        <li onclick="overlayOn(2)">
-                            <img class="user_image" src="/images/user/04.jpg">
-                            <div class="review_box">
-                                <div class="review_userinfo">
-                                    <p>댕청이</p>
-                                    <img class="user_grade_image" src="/images/grades/sapphire.png">
-                                    <div class="review_star star10"></div>
-                                </div>
-                                <div class="review_text">
-                                    호구력 만점. 가성비 만점. 절대 피곤할 일 없어요. 결혼 보험용으로 강추.
-                                </div>
-                            </div>
-                        </li>
-                        <li onclick="overlayOn(3)">
-                            <img class="user_image" src="/images/user/02.jpg">
-                            <div class="review_box">
-                                <div class="review_userinfo">
-                                    <p>엄마</p>
-                                    <img class="user_grade_image" src="/images/grades/jewel.png">
-                                    <div class="review_star star2"></div>
-                                </div>
-                                <div class="review_text">
-                                    잠겨 있는 리뷰입니다.
-                                </div>
-                            </div>
-                        </li>
-                        <li onclick="overlayOn(4)">
-                            <img class="user_image" src="/images/user/02.jpg">
-                            <div class="review_box">
-                                <div class="review_userinfo">
-                                    <p>동생</p>
-                                    <img class="user_grade_image" src="/images/grades/medal2.png">
-                                    <div class="review_star star2"></div>
-                                </div>
-                                <div class="review_text">
-                                    잠겨 있는 리뷰입니다.
-                                </div>
-                            </div>
-                        </li>
-                        
-
-                    </ul>
-                </div>
-                <div id="sns_analysis" class="dashboard_box">
-                    <div class="dashboard_title" onclick="location.href='/snsAnalysis'">SNS Analysis</div>
-                    <ul>
-                        <li style="cursor: pointer;" onclick="location.href='/insta_jongsoo'">
-                            <img src="/images/logos/instagram.png" class="analysis_logo">
-                            <div class="analysis_body">
-                                <div class="analysis_title">
-                                    Instagram
-                                </div>
-                                <div class="analysis_text">
-                                    게시글 16 / 팔로워 30.0K / 팔로우 48<br>
-                                    실질 팔로워 38 (0.127%)
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="/images/logos/youtube.png" class="analysis_logo">
-                            <div class="analysis_body">
-                                <div class="analysis_title" onclick="location.href=`/insta_jongsoo`">
-                                    Youtube
-                                </div>
-                                <div class="analysis_text">
-                                    구독 32.0K / 좋아요 14<br>
-                                    실질 구독자 38 (0.127%)
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="/images/logos/kakaotalk.png" class="analysis_logo">
-                            <div class="analysis_body">
-                                <div class="analysis_title">
-                                    Kakaotalk
-                                </div>
-                                <div class="analysis_text">
-                                    친구 3,405<br>
-                                    실질 교류 134 (3.93%) / 선톡 비율 87.0%
-                                </div>
-                            </div>
-                        </li>
-                        
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -177,74 +81,61 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <script type="text/javascript" src="/javascripts/overlay.js"></script>
-
-    <div id="overlay" class="overlay" style="opacity: 0; display: none;">
+    
+    <div id="overlayReview" class="overlay" style="opacity: 0; display: none;">
+        <form id="review_form" class="popup_box popup_review" method="post" action="/data/writeReview">
+            <div class="popup_review_header">
+                <img id="review_toimg" class="popup_review_userphoto" alt="profile image of current page user">
+                <div class="stack_col">
+                    <div class="popup_review_userinfo">
+                        <p id="review_to" class="from"></p>
+                        <img id="review_torank" class="user_grade_image" style="height: 50px; width: 50px;">
+                        <p id="review_from" class="to"></p>
+                    </div>
+                    <fieldset id="review_rating">
+                        <input type="radio" name="rating" value="5" id="rate5" required><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="4" id="rate4"><label for="rate4">⭐</label>
+                        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+                        <input type="radio" name="rating" value="2" id="rate2"><label for="rate2">⭐</label>
+                        <input type="radio" name="rating" value="1" id="rate1"><label for="rate1">⭐</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="popup_review_body">
+                <textarea class="review_textarea real_textarea" name="body"></textarea>
+            </div>
+            <div class="popup_review_footer">
+                <button id="submit_button" type="submit" class="popup_button">작성</button>
+                <div class="popup_button" onclick="popupReviewOff()">취소</div>
+            </div>
+        </form>
+    </div>
+    
+<!-- data by userShowData.js
+    <div class="overlay" style="opacity: 0; display: none;">
         <div class="popup_box popup_review">
             <div class="popup_review_header">
                 <img class="popup_review_userphoto" src="/images/user/02.jpg">
                 <div class="stack_col">
                     <div class="popup_review_userinfo">
-                        By. 존버<img class="user_grade_image" src="/images/grades/crown.png" style="height: 50px; width: 50px;"><p class="by">About. 이종수</p><br>
+                        <p class="from">From. 존버</p>
+                        <img class="user_grade_image" src="/images/grades/crown.png" style="height: 50px; width: 50px;">
+                        <p class="to">To. 이종수</p>
                     </div>
                     <div class="popup_review_star popup_review_star6"></div>
                 </div>
             </div>
             <div class="popup_review_body">
-                <textarea class="review_textarea">세계 최강 오지라퍼. 항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데 과하게 친한 척하면서 이것저것 참견하고 다닐 때는 솔직히 꼴보기 싫다. 아바타 눈만 봐도 기빨림. 함정은 나대는 거에 비해 무능력해서 프로젝트에 손대는 족족 말아먹기로 유명하다. 같이 일해서 나락 간 사람이 한두 명이 아님. 회사에서 데스 노트로 불린다. 관심이고 도움이고 그냥 다 필요없으니까 제발 남한테 피해 주지 마세요.</textarea>
+                <div class="review_textarea">세계 최강 오지라퍼. 항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데 과하게 친한 척하면서 이것저것 참견하고 다닐 때는 솔직히 꼴보기 싫다. 아바타 눈만 봐도 기빨림. 함정은 나대는 거에 비해 무능력해서 프로젝트에 손대는 족족 말아먹기로 유명하다. 같이 일해서 나락 간 사람이 한두 명이 아님. 회사에서 데스 노트로 불린다. 관심이고 도움이고 그냥 다 필요없으니까 제발 남한테 피해 주지 마세요.</div>
             </div>
             <div class="popup_review_footer">
-                <div class="popup_button" onclick="overlayTextColor(0)">수정</div>
-                <div class="popup_button" onclick="overlayReturnColor(0)">삭제</div>
                 <div class="popup_button" onclick="overlayOff(0)">닫기</div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div id="overlay" class="overlay" style="opacity: 0; display: none;">
-        <div class="popup_box popup_review">
-            <div class="popup_review_header">
-                <img class="popup_review_userphoto" src="/images/user/02.jpg">
-                <div class="stack_col">
-                    <div class="popup_review_userinfo">
-                        By. 씹년지기<img class="user_grade_image" src="/images/grades/medal1.png" style="height: 50px; width: 50px;"><p class="by">About. 이종수</p><br>
-                    </div>
-                    <div class="popup_review_star popup_review_star4"></div>
-                </div>
-            </div>
-            <div class="popup_review_body">
-                <textarea class="review_textarea">얘랑 십 년 넘게 알고 지내다가 손절했음. 씹팔 조까튼 새끼. 자기 필요할 때 만 친구고 단물 다 빠지면 사람 취급도 안 하는 게, 뭐 핵인싸? 말 같지도 않음.</textarea>
-            </div>
-            <div class="popup_review_footer">
-                <div class="popup_button" onclick="overlayTextColor(1)">수정</div>
-                <div class="popup_button" onclick="overlayReturnColor(1)">삭제</div>
-                <div class="popup_button" onclick="overlayOff(1)">닫기</div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="overlay" class="overlay" style="opacity: 0; display: none;">
-        <div class="popup_box popup_review">
-            <div class="popup_review_header">
-                <img class="popup_review_userphoto" src="/images/user/04.jpg">
-                <div class="stack_col">
-                    <div class="popup_review_userinfo">
-                        By. 댕청이<img class="user_grade_image" src="/images/grades/sapphire.png" style="height: 50px; width: 50px;"><p class="by">About. 이종수</p><br>
-                    </div>
-                    <div class="popup_review_star popup_review_star10"></div>
-                </div>
-            </div>
-            <div class="popup_review_body">
-                <textarea class="review_textarea">호구력 만점. 가성비 만점. 절대 피곤할 일 없어요. 결혼 보험용으로 강추.</textarea>
-            </div>
-            <div class="popup_review_footer">
-                <div class="popup_button" onclick="overlayTextColor(2)">수정</div>
-                <div class="popup_button" onclick="overlayReturnColor(2)">삭제</div>
-                <div class="popup_button" onclick="overlayOff(2)">닫기</div>
-            </div>
-        </div>
-    </div>
-    
 </body>
+<script src="/javascripts/userShowData.js"></script>
+<script src="/javascripts/review.js"></script>
 </html>

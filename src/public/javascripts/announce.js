@@ -1,5 +1,5 @@
 const toggleBody = (header) => {
-    const body = header.parentElement.children[1];
+    const body = header.nextElementSibling;
     const visible = body.getAttribute("visible");
     if(visible == "false" || !visible) {
         body.setAttribute("visible", "true");

@@ -35,11 +35,6 @@ h3 {
 
 .content_wrapper {
     overflow-y: scroll;
-
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
-    -webkit-mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: top;
 }
 
 .content_row:nth-child(1) {
@@ -74,15 +69,42 @@ h3 {
 }
 
 .dashboard_title {
-    color:rgb(214, 124, 146);
-    font-size: 40px;
     padding-top: 10px;
     padding-left: 29px;
     padding-bottom: 5px;
-    text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
     margin-bottom: 10px;
 
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_text {
+    color:rgb(214, 124, 146);
+    font-size: 40px;
+    text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
+}
+
+.write_button {
+    width: 120px;
+    height: 55px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 36px;
+    line-height: 55px;
+    text-align: center;
+    color: rgb(214, 124, 146);
+
+    background-color: transparent;
+    border-radius: 10px;
+    border: 4px solid rgb(214, 124, 146);
+
     cursor: pointer;
+}
+
+.write_button:hover {
+    background-color: rgba(255, 196, 196, 0.308);
+    transform: translateY(-2px);
+    transition: 0.2s ease;
 }
 
 .dashboard_paragraph {
@@ -156,7 +178,7 @@ h3 {
 }
 
 #dashboard_reviews ul li {
-    display: flex;
+    height: 114px;
     background-color: rgb(255, 234, 234, 0);
     transition: all 0.3s;
 
@@ -173,6 +195,7 @@ h3 {
 }
 
 #dashboard_reviews ul li .user_image {
+    float: left;
     width: 100px;
     height: 100px;
     border-radius: 100%;
@@ -182,20 +205,17 @@ h3 {
 }
 
 #dashboard_reviews ul li .review_box {
-    flex: 1;
+    width: calc(100% - 104px);
     height: 100px;
 
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
+    padding-left: 124px;
+    margin-top: 10px;
 
     color: rgb(123, 123, 123);
 }
 
 .review_box .review_userinfo {
-    
-    flex: 1;
-
+    height: 50px;
     display: flex;
     align-items: center;
     font-size: 35px;
@@ -216,9 +236,13 @@ h3 {
 }
 
 .review_box .review_text {
-    flex: 1;
+    height: 40px;
     font-size: 25px;
     padding-top: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .review_star {
@@ -231,16 +255,11 @@ h3 {
     background-size: cover;
 }
 
-.star10 { background-image: url('/images/stars/10.png'); }
-.star9 { background-image: url('/images/stars/9.png'); }
-.star8 { background-image: url('/images/stars/8.png'); }
-.star7 { background-image: url('/images/stars/7.png'); }
-.star6 { background-image: url('/images/stars/6.png'); }
-.star5 { background-image: url('/images/stars/5.png'); }
-.star4 { background-image: url('/images/stars/4.png'); }
-.star3 { background-image: url('/images/stars/3.png'); }
-.star2 { background-image: url('/images/stars/2.png'); }
-.star1 { background-image: url('/images/stars/1.png'); }
+.star5 { background-image: url('/images/stars/10.png'); }
+.star4 { background-image: url('/images/stars/8.png'); }
+.star3 { background-image: url('/images/stars/6.png'); }
+.star2 { background-image: url('/images/stars/4.png'); }
+.star1 { background-image: url('/images/stars/2.png'); }
 
 #user_info {
     display: flex;
@@ -308,4 +327,14 @@ h3 {
 .analysis_text {
     color: inherit;
     font-size: 20px;
+}
+
+@media (max-width: 1900px) {
+    .write_button{
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 28px;
+        border: 3px solid;
+    }
 }

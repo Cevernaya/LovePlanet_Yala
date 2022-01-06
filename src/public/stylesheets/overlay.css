@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -27,7 +27,7 @@
 .popup_review {
     margin-top: 5%;
     width: 700px;
-    height: 82%;
+    height: 850px;
 
     padding: 20px;
 }
@@ -42,13 +42,15 @@
 }
 
 .popup_review_userinfo {
-    font-size: 50px;
-    color: dimgray;
-
     padding-left: 30px;
 
     display: flex;
     align-items: center;
+}
+
+.from {
+    font-size: 50px;
+    color: dimgray;
 }
 
 .popup_review_userphoto {
@@ -66,38 +68,38 @@
 }
 
 
-.popup_review_star10 { background-image: url('/images/stars/10.png'); }
-.popup_review_star9 { background-image: url('/images/stars/9.png'); }
-.popup_review_star8 { background-image: url('/images/stars/8.png'); }
-.popup_review_star7 { background-image: url('/images/stars/7.png'); }
-.popup_review_star6 { background-image: url('/images/stars/6.png'); }
-.popup_review_star5 { background-image: url('/images/stars/5.png'); }
-.popup_review_star4 { background-image: url('/images/stars/4.png'); }
-.popup_review_star3 { background-image: url('/images/stars/3.png'); }
-.popup_review_star2 { background-image: url('/images/stars/2.png'); }
-.popup_review_star1 { background-image: url('/images/stars/1.png'); }
+.popup_review_star5 { background-image: url('/images/stars/10.png'); }
+.popup_review_star4 { background-image: url('/images/stars/8.png'); }
+.popup_review_star3 { background-image: url('/images/stars/6.png'); }
+.popup_review_star1 { background-image: url('/images/stars/2.png'); }
+.popup_review_star2 { background-image: url('/images/stars/4.png'); }
 
 .popup_review_body{
     margin-bottom: 30px;
+    height: 580px;
 }
 
-.popup_review_body textarea {
+.review_textarea {
     width: 86%;
+    height: calc(100% - 32px);
     margin-left: 5%;
     padding: 2%;
-    height: 500px;
 
     border: 2px solid dimgray;
     border-radius: 20px;
-    resize: none;
 
     background-color: rgb(255, 255, 255, 0.5);
 
     font-size: 30px;
     line-height: 45px;
     font-family: 'proxima-nova', 'proxima-nova-extra-condensed',  'YiSunShinDotumM', monospace;
-    
+    overflow-y: auto;
 }
+
+.real_textarea {
+    resize: none;
+}
+
 textarea::selection {
     color: white;
     background: black;
@@ -110,7 +112,15 @@ textarea::selection {
     padding-right: 5%;
 }
 
+#submit_button {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    font-family: inherit;
+}
+
 .popup_button {
+    appearance: none;
     background-color: dimgray;
     height: 40px;
     width: 100px;
@@ -127,8 +137,98 @@ textarea::selection {
     cursor: pointer;
 }
 
-.by {
+.to {
     font-size: 25px;
     color: gray;
     margin-left: 25px;
+}
+
+#review_rating {
+    width: 160px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 20px;
+    background-position: center;
+    background-size: cover;
+    padding: 5px 12px;
+    margin-left: 20px;
+
+    background-color: white;
+}
+
+#review_form fieldset {
+    display: inline-block;
+    direction: rtl;
+    border: 2px solid rgb(214, 124, 146);
+    border-radius: 5px;
+}
+
+#review_form input[type=radio] {
+    display: none;
+}
+
+#review_form label{
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    cursor: pointer;
+}
+
+#review_form label:hover{
+    text-shadow: 0 0 0 rgb(214, 124, 146);
+}
+
+#review_form label:hover ~ label{
+    text-shadow: 0 0 0 rgb(214, 124, 146);
+}
+
+#review_form input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgb(214, 124, 146);
+}
+
+@media (max-width: 1900px) {
+    .popup_review {
+        margin-top: 7vh;
+        height: 80vh;
+    }
+
+    .popup_review_header {
+        margin-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .popup_review_body {
+        height: 67%;
+        margin-bottom: 10px;
+    }
+
+    .review_textarea {
+        font-size: 24px;
+        line-height: 36px;
+    }
+    
+    .popup_review_userphoto {
+        width: 90px;
+        height: 90px;
+    }
+
+    .from {
+        font-size: 40px;
+    }
+
+    .popup_review_star {
+        width: 120px;
+        height: 30px;
+    }
+
+    .popup_button {
+        width: 70px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 20px;
+    }
+
+    .to {
+        font-size: 20px;
+    }
+
 }
