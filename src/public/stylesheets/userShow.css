@@ -158,6 +158,7 @@ h3 {
 .user_text {
     color:rgb(120, 120, 120);
     font-size: 25px;
+    line-height: 35px;
 }
 
 #dashboard_reviews {

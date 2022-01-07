@@ -23,7 +23,11 @@ fetch("/data/sessionUserData")
     doc_info.className = "user_info"
 
     const doc_text = document.createElement("div")
-    doc_text.innerHTML = `user."가입일자" 가입.`
+    const doc_text_year = `${user.first_login}`.slice(0, 4)
+    const doc_text_month = `${user.first_login}`.slice(5, 7)
+    const doc_text_date = `${user.first_login}`.slice(8, 10)
+    const doc_text_text = `${doc_text_year}년 ${doc_text_month}월 ${doc_text_date}일 가입.`
+    doc_text.innerHTML = doc_text_text
     doc_text.className = "user_text"
 
     const doc_box = document.createElement("div")
