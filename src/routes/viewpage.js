@@ -46,4 +46,8 @@ router.get('/phoneReview', function(req, res, next) {
   res.render('phoneReview');
 });
 
+router.get('/cheat', function(req, res, next) {
+  res.render('cheat');
+});
+
 module.exports = router;

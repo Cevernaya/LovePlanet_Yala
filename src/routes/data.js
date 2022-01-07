@@ -1,4 +1,6 @@
 const express = require('express');
+const moment = require('moment')
+require('moment-timezone')
 
 /** INITIALIZE DATABASE **/
 
@@ -18,7 +20,7 @@ const routerGenerator = (db) => {
             req.session.invitation_code = invitation_code
             req.session.user_id = rows[0].user_id
             if(!rows[0].first_login) {
-                db.prepare(`UPDATE users SET first_login='${new Date().toISOString()}' WHERE user_id=${req.session.user_id}`).run()
+                db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul')}' WHERE user_id=${req.session.user_id}`).run()
             }
             res.send({success: true})
         }

@@ -13,6 +13,7 @@ const db = new sqlite(path.join(__dirname, 'database', 'database.db'));
 var viewsRouter = require('./routes/viewpage');
 var dataRouter = require('./routes/data')(db);
 var sessionRouter = require('./routes/session')
+var cheatRouter = require('./routes/cheat')(db)
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(session({
 app.use('/', viewsRouter);
 app.use('/data', dataRouter);
 app.use('/session', sessionRouter);
+app.use('/cheat', cheatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
