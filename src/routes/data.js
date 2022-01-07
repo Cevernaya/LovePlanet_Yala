@@ -17,6 +17,9 @@ const routerGenerator = (db) => {
         if(!req.session.invitation_code) {
             req.session.invitation_code = invitation_code
             req.session.user_id = rows[0].user_id
+            if(!rows[0].first_login) {
+                db.prepare(`UPDATE users SET first_login='${new Date().toISOString()}' WHERE user_id=${req.session.user_id}`).run()
+            }
             res.send({success: true})
         }
         else {
@@ -92,6 +95,7 @@ const routerGenerator = (db) => {
                 r.rating review_rating,
                 r.body review_body,
                 r.locked review_locked,
+                r.cost review_cost,
                 fu.rank fu_rank,
                 fu.name fu_name,
                 fu.profile_image fu_profile_image,
@@ -167,6 +171,56 @@ const routerGenerator = (db) => {
             result: runResult
         })
     
+    })
+
+    router.get('/unlockReview', (req, res) => {
+        const user_id = req.session.user_id
+        const review_id = req.query.review_id
+
+        const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()
+        if(!nowLovecoin) {
+            res.send({
+                success: false,
+                message: "해당 유저가 존재하지 않습니다!"
+            })
+            return
+        }
+
+        const nowReview = db.prepare(`SELECT * FROM reviews WHERE review_id=${review_id}`).all()
+        if(!nowReview) {
+            res.send({
+                success: false,
+                message: "해당 리뷰가 존재하지 않습니다!"
+            })
+            return
+        }
+        
+        if(!nowReview[0].locked) {
+            res.send({
+                success: false,
+                message: "이미 열려있는 리뷰입니다!"
+            })
+            return
+        }
+        
+        if(nowLovecoin[0].lovecoin < nowReview[0].cost) {
+            res.send({
+                success: false,
+                message: "보유 러브코인이 부족합니다!"
+            })
+            return
+        }
+
+        const newLovecoin = nowLovecoin[0].lovecoin - nowReview[0].cost
+        db.prepare(`UPDATE users SET lovecoin=${newLovecoin} WHERE user_id=${user_id}`).run()
+        db.prepare(`UPDATE reviews SET locked=0 WHERE review_id=${review_id}`).run()
+
+        const newReview = db.prepare(`SELECT * FROM reviews WHERE review_id=${review_id}`).all()
+        res.send({
+            success: true,
+            review: newReview[0]
+        })
+        
     })
     
     router.get('/nowLovecoin', (req, res) => {
