@@ -1,0 +1,33 @@
+body {
+    display: flex;
+}
+
+section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(100 0 0);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0 100 0);
+}
+
+h1 {
+    background-color: rgb(0 200 0);
+}
+
+article {
+    background-color: rgb(0 0 200);
+}
+
+.login_logo {
+    background-color: rgb(200 100 100);
+}
+
+form {
+    background-color: rgb(100 100 200);
+}
