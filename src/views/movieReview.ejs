@@ -40,9 +40,9 @@
         <div class="content">
             <div class="content_row">
                 <form id="movie_review_form" class="dashboard_box" method="post" action="/data/writeMovieReview">
-                    <h2>
+                    <div class="review_box_title">
                         Movie Review
-                    </h2>
+                    </div>
                     <div class="review_input">
                         <div class="review_info">
                             <input placeholder="닉네임" class="review_name" type="text" name="user_name" required/>
@@ -50,9 +50,11 @@
                             <label for="hidden_check">비밀댓글</label>
                             <input type="hidden" name="hidden" value="0" id="hidden_check_hidden"/>
                         </div>
-                        <textarea name="body" placeholder="내용"></textarea>
+                        <div class="review_body_box">
+                            <textarea name="body" placeholder="내용"></textarea>
+                            <div class="write_button">작성</div>
+                        </div>
                     </div>
-                    <button type="button" class="write_button">작성</button>
                 </form>
             </div>
             <div class="content_row">
@@ -62,13 +64,10 @@
                     </div>
                     <ul id="js_reviewlist">
                         <!-- data by movieReview.js -->
-                    <!-- <li onclick="overlayOn(0)">
-                            <img class="user_image" src="/images/user/02.jpg">
+                    <!--<li onclick="overlayOn(0)">
                             <div class="review_box">
                                 <div class="review_userinfo">
                                     <p>존버</p>
-                                    <img class="user_grade_image" src="/images/grades/crown.png">
-                                    <div class="review_star star3"></div>
                                 </div>
                                 <div class="review_text">
                                     항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데...
@@ -78,16 +77,34 @@
                     </ul>
                 </div>
             </div>
-            
         </div>
-
-        
-
     </div>
+    
+    <script type="text/javascript" src="../public/javascripts/overlay.js"></script>
+
+    <!-- data by userShowData.js
+    <div class="overlay" style="opacity: 0; display: none;">
+        <div class="popup_box popup_review">
+            <div class="popup_review_header">
+                <div class="popup_review_userinfo">
+                    <p class="from">By. 존버</p>
+                </div>
+            </div>
+            <div class="popup_review_body">
+                <div class="review_textarea">세계 최강 오지라퍼. 항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데 과하게 친한 척하면서 이것저것 참견하고 다닐 때는 솔직히 꼴보기 싫다. 아바타 눈만 봐도 기빨림. 함정은 나대는 거에 비해 무능력해서 프로젝트에 손대는 족족 말아먹기로 유명하다. 같이 일해서 나락 간 사람이 한두 명이 아님. 회사에서 데스 노트로 불린다. 관심이고 도움이고 그냥 다 필요없으니까 제발 남한테 피해 주지 마세요.</div>
+            </div>
+            <div class="popup_review_footer">
+                <div class="popup_button" onclick="overlayOff(0)">닫기</div>
+            </div>
+        </div>
+    </div> -->
 </body>
+
 <script>
     if(document.getElementById("hidden_check").checked) {
     document.getElementById("hidden_check_hidden").disabled = true;
 }
 </script>
+<script src="../public/javascripts/movieReview.js"></script>
+
 </html>
