@@ -12,23 +12,27 @@
     <title>Love Planet</title>
 </head>
 <body>
-    <section>
-        <h1>
-            뭔가 대충 제목같은 문구
-        </h1>
-        <article>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere quibusdam reiciendis dignissimos dolorem! Iusto ducimus vel commodi tempora, explicabo suscipit exercitationem sunt beatae natus maiores. Blanditiis neque sapiente dolorem perspiciatis?
-        </article>
-    </section>
-    <main>
-        <div class="login_logo">
-            로고 부분
-        </div>
-        <form>
-            <input type="text" name="invitation_code"/>
-            <div id="login_button" onclick="login()">입력</div>
-        </form>
-    </main>
+    <div class="screen">
+        <section>
+            <h1>
+                뭔가 대충 제목같은 문구
+            </h1>
+            <article>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere quibusdam reiciendis dignissimos dolorem! Iusto ducimus vel commodi tempora, explicabo suscipit exercitationem sunt beatae natus maiores. Blanditiis neque sapiente dolorem perspiciatis?
+            </article>
+        </section>
+        <main>
+            <div class="login_logo">
+                로고 부분
+            </div>
+            <form>
+                <div class="input_box">
+                    <input type="text" name="invitation_code" placeholder="초대 코드로 로그인"/>
+                    <div id="login_button" onclick="login()">로그인</div>
+                </div>
+            </form>
+        </main>
+    </div>
 </body>
 
 <script src="javascripts/login.js"></script>
