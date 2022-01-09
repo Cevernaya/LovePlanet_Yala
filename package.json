@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www"
+    "start": "node ./src/bin/www",
+    "back_start": "pm2 start ecosystem.config.js",
+    "back_restart": "pm2 restart loveplanet_yala",
+    "back_stop": "pm2 stop loveplanet_yala",
+    "back_delete": "pm2 delete loveplanet_yala"
   },
   "dependencies": {
     "better-sqlite3": "^7.4.6",
@@ -17,6 +21,8 @@
     "http-errors": "~1.6.3",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
   }
 }
