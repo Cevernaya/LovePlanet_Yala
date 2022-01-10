@@ -5,7 +5,7 @@ const { forceLogin, alertLogin } = require('../utils/loginHandler')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('main', { title: 'Express' });
+  res.render('login', { title: 'Express' });
 });
 
 router.get('/announce', forceLogin, function(req, res, next) {
@@ -30,6 +30,10 @@ router.get('/userShow', forceLogin, function(req, res, next) {
 
 router.get('/cheat', forceLogin, function(req, res, next) {
   res.render('cheat');
+});
+
+router.get('/movieReview', forceLogin, function(req, res, next) {
+  res.render('movieReview');
 });
 
 module.exports = router;
