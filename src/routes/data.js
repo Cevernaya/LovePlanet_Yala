@@ -2,7 +2,7 @@ const express = require('express');
 const moment = require('moment')
 require('moment-timezone')
 
-/** INITIALIZE DATABASE **/
+const { forceLogin, alertLogin } = require('../utils/loginHandler')
 
 
 const routerGenerator = (db) => {
@@ -20,7 +20,7 @@ const routerGenerator = (db) => {
             req.session.invitation_code = invitation_code
             req.session.user_id = rows[0].user_id
             if(!rows[0].first_login) {
-                db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul')}' WHERE user_id=${req.session.user_id}`).run()
+                db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`).run()
             }
             res.send({success: true})
         }
@@ -57,7 +57,7 @@ const routerGenerator = (db) => {
         })
     })
 
-    router.get('/sessionUserData', (req, res) => {
+    router.get('/sessionUserData', alertLogin, (req, res) => {
         const invitation_code = req.session.invitation_code
         const user_id = req.session.user_id
         const user = db.prepare(`SELECT * FROM users WHERE user_id=${user_id}`).all()
@@ -72,7 +72,7 @@ const routerGenerator = (db) => {
         })
     })
     
-    router.get('/reviews', (req, res) => {
+    router.get('/reviews', alertLogin, (req, res) => {
         const to_user = req.query.to_user
     
         const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
@@ -125,7 +125,7 @@ const routerGenerator = (db) => {
         })
     })
     
-    router.get('/notices', (req, res) => {
+    router.get('/notices', alertLogin, (req, res) => {
         const user_id = req.session.user_id;
         const rows = db.prepare(`
             SELECT n.title title, n.body body, n.notice_id notice_id
@@ -140,7 +140,7 @@ const routerGenerator = (db) => {
         })
     })
     
-    router.post('/writeReview', (req, res) => {
+    router.post('/writeReview', alertLogin, (req, res) => {
         const from_user = req.session.user_id
         const to_user = req.body.to_user
         const rating = req.body.rating
@@ -175,7 +175,7 @@ const routerGenerator = (db) => {
     
     })
 
-    router.get('/unlockReview', (req, res) => {
+    router.get('/unlockReview', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const review_id = req.query.review_id
 
@@ -225,7 +225,7 @@ const routerGenerator = (db) => {
         
     })
     
-    router.get('/nowLovecoin', (req, res) => {
+    router.get('/nowLovecoin', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
     
@@ -235,7 +235,7 @@ const routerGenerator = (db) => {
         })
     })
     
-    router.post('/addLovecoin', (req, res) => {
+    router.post('/addLovecoin', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const diffLovecoin = req.body.diffLovecoin
         
@@ -283,7 +283,7 @@ const routerGenerator = (db) => {
         })
     })
     
-    router.post('/writeMovieReview', (req, res) => {
+    router.post('/writeMovieReview', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const user_name = req.body.user_name
         const body = req.body.body
@@ -306,7 +306,7 @@ const routerGenerator = (db) => {
         res.send({ success: true, ranks })
     })
 
-    router.post('/rankDodgeAdd', (req, res) => {
+    router.post('/rankDodgeAdd', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const name = req.body.name
         const score = req.body.score
@@ -328,7 +328,7 @@ const routerGenerator = (db) => {
         res.send({ success: true, ranks })
     })
 
-    router.post('/rankGraphAdd', (req, res) => {
+    router.post('/rankGraphAdd', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const score = req.body.score
 

@@ -1,10 +1,13 @@
 const express = require('express');
 
 const randomPraise = require('../database/randomPraise')
+const { forceLogin, alertLogin } = require('../utils/loginHandler')
 
 
 const routerGenerator = (db) => {
     const router = express.Router()
+
+    router.use(forceLogin)
 
     router.get('/unlockEveryReview', (req, res) => {
         const user_id = req.session.user_id
