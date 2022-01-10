@@ -1,3 +1,14 @@
-const onclick = () => {
-    //현재 form을 submit 시키고 /userShow로 리디렉
+const login = () => {
+    const input = document.getElementById("input")
+    const code = input.value
+
+    fetch(`/data/login?invitation_code=${code}`)
+    .then((response) => {
+        return response.json()
+    })
+    .then((response) => {
+        if (response.success == true) {
+            location.replace("/userShow")
+        }
+    })
 }
