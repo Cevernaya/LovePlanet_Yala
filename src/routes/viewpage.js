@@ -32,7 +32,7 @@ router.get('/cheat', forceLogin, function(req, res, next) {
   res.render('cheat');
 });
 
-router.get('/movieReview', forceLogin, function(req, res, next) {
+router.get('/systemFeedback', forceLogin, function(req, res, next) {
   res.render('movieReview');
 });
 
