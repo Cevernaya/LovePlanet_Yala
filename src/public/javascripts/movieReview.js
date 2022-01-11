@@ -79,3 +79,33 @@ fetch(`/data/getMovieReviews`)
 .catch((error) => {
 console.log(error)
 })
+
+const writeMovieReview = () => {
+    const input_name = document.querySelector(".review_name")
+    const name = input_name.value
+
+    const textarea = document.querySelector("textarea")
+    const text = textarea.value
+
+    const data = {
+        "user_name" : name,
+        "body" : text,
+        "hidden" : 0
+    }
+
+    fetch("/data/writeMovieReview", {
+        method : 'POST',
+        body : JSON.stringify(data),
+        headers : {
+            'Content-Type' : 'application/json'
+        }
+    }).then((response) => {
+        return response.json()
+    }).then((response) => {
+        if (response.success == true) {
+            location.reload()
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
+}
