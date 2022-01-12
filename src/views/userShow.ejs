@@ -85,7 +85,7 @@
     <script type="text/javascript" src="/javascripts/overlay.js"></script>
     
     <div id="overlayReview" class="overlay" style="opacity: 0; display: none;">
-        <form id="review_form" class="popup_box popup_review" method="post" action="/data/writeReview">
+        <form id="review_form" class="popup_box popup_review" method="post" action="/data/writeReview" target="iframe">
             <div class="popup_review_header">
                 <img id="review_toimg" class="popup_review_userphoto" alt="profile image of current page user">
                 <div class="stack_col">
@@ -95,7 +95,7 @@
                         <p id="review_from" class="to"></p>
                     </div>
                     <fieldset id="review_rating">
-                        <input type="radio" name="rating" value="5" id="rate5" required><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="5" id="rate5"><label for="rate5">⭐</label>
                         <input type="radio" name="rating" value="4" id="rate4"><label for="rate4">⭐</label>
                         <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
                         <input type="radio" name="rating" value="2" id="rate2"><label for="rate2">⭐</label>
@@ -107,7 +107,7 @@
                 <textarea class="review_textarea real_textarea" name="body"></textarea>
             </div>
             <div class="popup_review_footer">
-                <button id="submit_button" type="submit" class="popup_button">작성</button>
+                <button id="submit_button" type="button" class="popup_button" onclick="writeReview()">작성</button>
                 <div class="popup_button" onclick="popupReviewOff()">취소</div>
             </div>
         </form>

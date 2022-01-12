@@ -104,6 +104,8 @@ const writeMovieReview = () => {
     }).then((response) => {
         if (response.success == true) {
             location.reload()
+        } else {
+            alert("error")
         }
     }).catch((error) => {
         console.log(error)
