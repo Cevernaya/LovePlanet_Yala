@@ -26,10 +26,11 @@
                         <li><a href="/userShow">My page</a></li>
                         <li><a href="/announce">Notices</a></li>
                         <hr>
-                        <li><a href="/lovecoin">Lovecoin</a></li>
+                        <li><a href="/lovecoin">Lovecoin Mining</a></li>
+                        <li><a href="/lovecoin_chart">Lovecoin Chart</a></li>
                         <li><a href="/users">Users</a></li>
                         <hr>
-                        <li><a href="/systemDocument">System Document</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/17iISWCmPrqZLcxa-T10jm5ApPSg5Szdz?usp=sharing">System Document</a></li>
                         <li><a href="/systemFeedback">System Feedback</a></li>
                     </ul>
                 </div>
@@ -57,7 +58,7 @@
                     </div>
                     <ul id="js_reviewlist">
                         <!-- data by userShowData.js -->
-                    <!-- <li onclick="overlayOn(0)">
+                    <!-- <li onclick="overlayOn(1)">
                             <img class="user_image" src="/images/user/02.jpg">
                             <div class="review_box">
                                 <div class="review_userinfo">
@@ -84,7 +85,7 @@
     <script type="text/javascript" src="/javascripts/overlay.js"></script>
     
     <div id="overlayReview" class="overlay" style="opacity: 0; display: none;">
-        <form id="review_form" class="popup_box popup_review" method="post" action="/data/writeReview">
+        <form id="review_form" class="popup_box popup_review" method="post" action="/data/writeReview" target="iframe">
             <div class="popup_review_header">
                 <img id="review_toimg" class="popup_review_userphoto" alt="profile image of current page user">
                 <div class="stack_col">
@@ -94,7 +95,7 @@
                         <p id="review_from" class="to"></p>
                     </div>
                     <fieldset id="review_rating">
-                        <input type="radio" name="rating" value="5" id="rate5" required><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="5" id="rate5"><label for="rate5">⭐</label>
                         <input type="radio" name="rating" value="4" id="rate4"><label for="rate4">⭐</label>
                         <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
                         <input type="radio" name="rating" value="2" id="rate2"><label for="rate2">⭐</label>
@@ -106,7 +107,7 @@
                 <textarea class="review_textarea real_textarea" name="body"></textarea>
             </div>
             <div class="popup_review_footer">
-                <button id="submit_button" type="submit" class="popup_button">작성</button>
+                <button id="submit_button" type="button" class="popup_button" onclick="writeReview()">작성</button>
                 <div class="popup_button" onclick="popupReviewOff()">취소</div>
             </div>
         </form>
@@ -130,7 +131,7 @@
                 <div class="review_textarea">세계 최강 오지라퍼. 항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데 과하게 친한 척하면서 이것저것 참견하고 다닐 때는 솔직히 꼴보기 싫다. 아바타 눈만 봐도 기빨림. 함정은 나대는 거에 비해 무능력해서 프로젝트에 손대는 족족 말아먹기로 유명하다. 같이 일해서 나락 간 사람이 한두 명이 아님. 회사에서 데스 노트로 불린다. 관심이고 도움이고 그냥 다 필요없으니까 제발 남한테 피해 주지 마세요.</div>
             </div>
             <div class="popup_review_footer">
-                <div class="popup_button" onclick="overlayOff(0)">닫기</div>
+                <div class="popup_button" onclick="overlayOff(1)">닫기</div>
             </div>
         </div>
     </div> -->

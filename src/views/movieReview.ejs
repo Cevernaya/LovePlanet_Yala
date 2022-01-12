@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="stylesheets/menu_template.css">
+    <link rel="stylesheet" href="stylesheets/overlay.css">
+    <link rel="stylesheet" href="stylesheets/movieReview.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <title>Love Planet</title>
+</head>
+<body>
+    <div class="full">
+        <div class="menu">
+            <div class="menu_box">
+                <div class="menu_top">
+                    <p id="menu_top_text">🤍 Love Planet</p>
+                    <img id="menu_top_image" src="images/user/02.jpg">
+                </div>
+                <div class="menu_list">
+                    <ul id="menu_list_wrapper">
+                        <li><a href="/userShow">My page</a></li>
+                        <li><a href="/announce">Notices</a></li>
+                        <hr>
+                        <li><a href="/lovecoin">Lovecoin Mining</a></li>
+                        <li><a href="/lovecoin_chart">Lovecoin Chart</a></li>
+                        <li><a href="/users">Users</a></li>
+                        <hr>
+                        <li><a href="/https://drive.google.com/drive/folders/17iISWCmPrqZLcxa-T10jm5ApPSg5Szdz?usp=sharing">System Document</a></li>
+                        <li><a href="/systemFeedback">System Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content_row">
+                <form id="movie_review_form" class="dashboard_box" method="post" action="/data/writeMovieReview">
+                    <div class="review_box_title">
+                        Movie Review
+                    </div>
+                    <div class="review_input">
+                        <div class="review_info">
+                            <input placeholder="닉네임" class="review_name" type="text" name="user_name" required/>
+                            <input type="checkbox" name="hidden" value="1" id="hidden_check"/>
+                            <label for="hidden_check">비밀댓글</label>
+                            <input type="hidden" name="hidden" value="0" id="hidden_check_hidden"/>
+                        </div>
+                        <div class="review_body_box">
+                            <textarea name="body" placeholder="내용"></textarea>
+                            <div class="write_button" onclick="writeMovieReview()">작성</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="content_row">
+                <div id="dashboard_reviews" class="dashboard_box">
+                    <div class="dashboard_title">
+                        <p class="title_text">Reviews</p>
+                    </div>
+                    <ul id="js_reviewlist">
+                        <!-- data by movieReview.js -->
+                    <!--<li onclick="overlayOn(0)">
+                            <div class="review_box">
+                                <div class="review_userinfo">
+                                    <p>존버</p>
+                                </div>
+                                <div class="review_text">
+                                    항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데...
+                                </div>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="/javascripts/overlay.js"></script>
+
+    <!-- data by userShowData.js
+    <div class="overlay" style="opacity: 0; display: none;">
+        <div class="popup_box popup_review">
+            <div class="popup_review_header">
+                <div class="popup_review_userinfo">
+                    <p class="from">By. 존버</p>
+                </div>
+            </div>
+            <div class="popup_review_body">
+                <div class="review_textarea">세계 최강 오지라퍼. 항상 자신감 있고 주변 사람들한테 관심이 많은 분이다. 근데 과하게 친한 척하면서 이것저것 참견하고 다닐 때는 솔직히 꼴보기 싫다. 아바타 눈만 봐도 기빨림. 함정은 나대는 거에 비해 무능력해서 프로젝트에 손대는 족족 말아먹기로 유명하다. 같이 일해서 나락 간 사람이 한두 명이 아님. 회사에서 데스 노트로 불린다. 관심이고 도움이고 그냥 다 필요없으니까 제발 남한테 피해 주지 마세요.</div>
+            </div>
+            <div class="popup_review_footer">
+                <div class="popup_button" onclick="overlayOff(0)">닫기</div>
+            </div>
+        </div>
+    </div> -->
+</body>
+
+<script>
+    if(document.getElementById("hidden_check").checked) {
+    document.getElementById("hidden_check_hidden").disabled = true;
+}
+</script>
+<script src="/javascripts/movieReview.js"></script>
+
+</html>

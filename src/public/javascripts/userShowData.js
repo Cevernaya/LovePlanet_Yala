@@ -18,8 +18,12 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_rank.className = "user_grade_image"
     user_header.appendChild(user_rank)
 
+    const user_login_year = `${user.first_login}`.slice(0, 4)
+    const user_login_month = `${user.first_login}`.slice(5, 7)
+    const user_login_date = `${user.first_login}`.slice(8, 10)
+    const user_login_text = `${user_login_year}년 ${user_login_month}월 ${user_login_date}일 가입.`
     const user_text = document.querySelector(".user_text")
-    user_text.innerHTML = `${user.age}, ${user.address} 거주<br>user."가입일자" 가입.<br>${user.movie_character == 0 ? `${user.lovecoin} coin` : ""}`
+    user_text.innerHTML = `• ${user.age}, ${user.address} 거주<br>• ${user_login_text}<br>${user.movie_character == 0 ? `• ${user.lovecoin} coin` : ""}`
 
     const user_info = document.getElementById("user_info")
     const user_body = document.querySelector(".user_body")
