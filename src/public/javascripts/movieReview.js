@@ -87,12 +87,20 @@ const writeMovieReview = () => {
     const textarea = document.querySelector("textarea")
     const text = textarea.value
 
+    const hidden_list = document.getElementsByClassName("hidden_checkbox")
+    let hidden = 0
+    hidden_list.foreach((input) => {
+        if (input.checked) {
+            hidden = input.value
+        }
+    })
+
     let data = {}
     if (text) {
         data = {
             "user_name" : name,
             "body" : text,
-            "hidden" : 0
+            "hidden" : hidden
         }
     }
 
