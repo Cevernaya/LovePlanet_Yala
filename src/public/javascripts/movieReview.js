@@ -87,10 +87,13 @@ const writeMovieReview = () => {
     const textarea = document.querySelector("textarea")
     const text = textarea.value
 
-    const data = {
-        "user_name" : name,
-        "body" : text,
-        "hidden" : 0
+    let data = {}
+    if (text) {
+        data = {
+            "user_name" : name,
+            "body" : text,
+            "hidden" : 0
+        }
     }
 
     fetch("/data/writeMovieReview", {
@@ -105,7 +108,8 @@ const writeMovieReview = () => {
         if (response.success == true) {
             location.reload()
         } else {
-            alert("error")
+            if (!text)
+            alert("내용을 입력해 주세요")
         }
     }).catch((error) => {
         console.log(error)

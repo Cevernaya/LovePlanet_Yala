@@ -26,7 +26,7 @@ const writeReview = () => {
     const text = document.querySelector(".real_textarea").value
     
     let data = {}
-    if (rating != 0) {
+    if (rating && text) {
         data = {
             "to_user" : to_user_id,
             "rating" : rating,
@@ -46,7 +46,11 @@ const writeReview = () => {
         if (response.success == true) {
             location.reload()
         } else {
-            alert("error")
+            if (!rating) {
+                alert("별점을 선택해 주세요")
+            } else if (!text) {
+                alert("내용을 입력해 주세요")
+            }
         }
     }).catch((error) => {
         console.log(error)
