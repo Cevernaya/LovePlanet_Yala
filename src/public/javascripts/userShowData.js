@@ -69,8 +69,11 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         const body = document.querySelector("body")
 
         let index = 1
-
+        
         for (const current of review_list) {
+
+            // Review list
+
             const doc_fromname = document.createElement("p")
             doc_fromname.innerHTML = current.fu_name
             const doc_fromrank = document.createElement("img")
@@ -100,11 +103,17 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
             doc_writer_img.className = "user_image"
 
             const doc_list = document.createElement("li")
-            doc_list.setAttribute("onclick", `overlayOn(${index})`)
             doc_list.appendChild(doc_writer_img)
             doc_list.appendChild(doc_box)
+            if (current.review_locked == 1) {
+                doc_list.setAttribute("onclick", `unlock(${current.review_id}, ${current.review_cost})`)
+            } else {
+                doc_list.setAttribute("onclick", `overlayOn(${index})`)
+            }
 
             doc_review_list.appendChild(doc_list)
+
+            // Pop-up screen
 
             const pop_funame = document.createElement("p")
             pop_funame.innerHTML = current.fu_name
