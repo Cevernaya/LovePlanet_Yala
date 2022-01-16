@@ -109,11 +109,11 @@ ul {
 .menu_list a {
     color: rgb(255, 177, 177);
     text-shadow: 0 2px 4px white;
-    transition: all 0.3s;
 }
 .menu_list a:hover {
     color: rgb(255, 177, 177);
     text-shadow: 0 2px 4px rgb(245, 192, 179);
+    transition: all 0.3s;
 }
 
 #menu_list_wrapper {
