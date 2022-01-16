@@ -268,7 +268,7 @@ const routerGenerator = (db) => {
     
     router.get('/getMovieReviews', (req, res) => {
         const user_id = req.session.user_id
-        const reviews = db.prepare(`SELECT * FROM movie_reviews`).all()
+        const reviews = db.prepare(`SELECT * FROM movie_reviews ORDER BY movie_review_id DESC`).all()
     
         const filtered = reviews.map(review => {
             if(review.hidden && review.user_id != user_id) {
