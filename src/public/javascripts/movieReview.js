@@ -24,11 +24,7 @@ fetch(`/data/getMovieReviews`)
         doc_frominfo.className = "review_userinfo"
         
         const doc_text = document.createElement("div")
-        if (current.hidden == 1) {
-            doc_text.innerHTML = "비밀 댓글입니다."
-        } else {
-            doc_text.innerHTML = current.body.replace(/\n/g, "<br>")
-        }
+        doc_text.innerHTML = current.body.replace(/\n/g, "<br>")
         doc_text.className = "review_text"
 
 
@@ -62,11 +58,7 @@ fetch(`/data/getMovieReviews`)
         pop_header.className = "popup_review_header"
 
         const pop_text = document.createElement("div")
-        if (current.hidden == 1) {
-            pop_text.innerHTML = "비밀 댓글입니다."
-        } else {
-            pop_text.innerHTML = current.body.replace(/\n/g, "<br>")
-        }
+        pop_text.innerHTML = current.body.replace(/\n/g, "<br>")
         pop_text.className = "review_textarea"
 
         const pop_body = document.createElement("div")

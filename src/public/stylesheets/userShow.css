@@ -237,9 +237,9 @@ h3 {
 }
 
 .review_box .review_text {
-    height: 40px;
+    height: 25px;
     font-size: 25px;
-    padding-top: 10px;
+    padding-top: 20px;
 
     white-space: nowrap;
     overflow: hidden;
