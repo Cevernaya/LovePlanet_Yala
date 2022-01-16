@@ -8,7 +8,7 @@ const login = () => {
         if (response.success == true) {
             location.replace("/userShow")
         } else {
-            alert("error")
+            alert("초대 코드를 확인해 주세요")
         }
     }).catch((error) => {
         console.log(error)

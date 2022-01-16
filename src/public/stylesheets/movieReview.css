@@ -215,9 +215,14 @@ textarea {
 
 .review_box .review_userinfo {
     height: 50px;
+    display: flex;
     align-items: center;
     font-size: 35px;
     line-height: 50px;
+}
+
+.lock_icon {
+    margin-left: 10px;
 }
 
 .review_box .review_text {

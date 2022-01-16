@@ -43,6 +43,7 @@
 
 .popup_review_userinfo {
     padding-left: 30px;
+    margin-top: 5px;
 
     display: flex;
     align-items: center;
@@ -60,6 +61,7 @@
 }
 
 .popup_review_star {
+    margin-top: 10px;
     width: 160px;
     height: 40px;
     background-position: center;
@@ -76,7 +78,7 @@
 
 .popup_review_body{
     margin-bottom: 30px;
-    height: 580px;
+    height: 500px;
 }
 
 .review_textarea {
@@ -144,14 +146,15 @@ textarea::selection {
 }
 
 #review_rating {
+    padding: 5px 12px;
+    margin-left: 35px;
+    margin-top: 20px;
     width: 160px;
     height: 25px;
     line-height: 25px;
     font-size: 20px;
     background-position: center;
     background-size: cover;
-    padding: 5px 12px;
-    margin-left: 20px;
 
     background-color: white;
 }
@@ -174,15 +177,15 @@ textarea::selection {
 }
 
 #review_form label:hover{
-    text-shadow: 0 0 0 rgb(214, 124, 146);
+    text-shadow: 0 0 0 rgb(255, 192, 35);
 }
 
 #review_form label:hover ~ label{
-    text-shadow: 0 0 0 rgb(214, 124, 146);
+    text-shadow: 0 0 0 rgb(255, 192, 35);
 }
 
 #review_form input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgb(214, 124, 146);
+    text-shadow: 0 0 0 rgb(255, 192, 35);
 }
 
 @media (max-width: 1900px) {
@@ -211,6 +214,7 @@ textarea::selection {
     }
 
     .popup_review_star {
+        margin-top: 0;
         width: 120px;
         height: 30px;
     }
@@ -224,6 +228,10 @@ textarea::selection {
 
     .to {
         font-size: 20px;
+    }
+
+    #review_rating {
+        margin-top: 0;
     }
 
 }

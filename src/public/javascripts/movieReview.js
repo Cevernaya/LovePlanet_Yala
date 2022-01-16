@@ -12,13 +12,25 @@ fetch(`/data/getMovieReviews`)
     for (const current of review_list) {
         const doc_writer = document.createElement("p")
         doc_writer.innerHTML = current.user_name
+        const doc_review_lock = document.createElement("img")
+        if (current.hidden == 1) {
+            doc_review_lock.setAttribute("src", "/images/lock.png")
+            doc_review_lock.setAttribute("alt", "locked icon")
+        }
+        doc_review_lock.className = "lock_icon"
         const doc_frominfo = document.createElement("div")
         doc_frominfo.appendChild(doc_writer)
+        doc_frominfo.appendChild(doc_review_lock)
         doc_frominfo.className = "review_userinfo"
         
         const doc_text = document.createElement("div")
-        doc_text.innerHTML = current.body.replace(/\n/g, "<br>")
+        if (current.hidden == 1) {
+            doc_text.innerHTML = "비밀 댓글입니다."
+        } else {
+            doc_text.innerHTML = current.body.replace(/\n/g, "<br>")
+        }
         doc_text.className = "review_text"
+
 
         const doc_box = document.createElement("div")
         doc_box.appendChild(doc_frominfo)
@@ -32,10 +44,17 @@ fetch(`/data/getMovieReviews`)
         doc_review_list.appendChild(doc_list)
 
         const pop_writer = document.createElement("p")
-        pop_writer.innerHTML = `By. ${current.user_name}`
+        pop_writer.innerHTML = `By. ${current.user_name}` 
+        const pop_review_lock = document.createElement("img")
+        if (current.hidden == 1) {
+            pop_review_lock.setAttribute("src", "/images/lock.png")
+            pop_review_lock.setAttribute("alt", "locked icon")
+        }
+        pop_review_lock.className = "lock_icon"
         pop_writer.className = "from"
         const pop_userinfo = document.createElement("div")
         pop_userinfo.appendChild(pop_writer)
+        pop_userinfo.appendChild(pop_review_lock)
         pop_userinfo.className = "popup_review_userinfo"
 
         const pop_header = document.createElement("div")
@@ -43,7 +62,11 @@ fetch(`/data/getMovieReviews`)
         pop_header.className = "popup_review_header"
 
         const pop_text = document.createElement("div")
-        pop_text.innerHTML = `${current.body.replace(/\n/g, "<br>")}`
+        if (current.hidden == 1) {
+            pop_text.innerHTML = "비밀 댓글입니다."
+        } else {
+            pop_text.innerHTML = current.body.replace(/\n/g, "<br>")
+        }
         pop_text.className = "review_textarea"
 
         const pop_body = document.createElement("div")
@@ -87,10 +110,22 @@ const writeMovieReview = () => {
     const textarea = document.querySelector("textarea")
     const text = textarea.value
 
-    const data = {
-        "user_name" : name,
-        "body" : text,
-        "hidden" : 0
+    const hidden_list = document.getElementsByName("hidden")
+    let hidden = 0
+    console.log(hidden_list)
+    hidden_list.forEach(input => {
+        if (input.checked == true) {
+            hidden = input.value
+        }
+    })
+
+    let data = {}
+    if (name && text) {
+        data = {
+            "user_name" : name,
+            "body" : text,
+            "hidden" : hidden
+        }
     }
 
     fetch("/data/writeMovieReview", {
@@ -105,7 +140,11 @@ const writeMovieReview = () => {
         if (response.success == true) {
             location.reload()
         } else {
-            alert("error")
+            if (!name) {
+                alert("닉네임을 입력해 주세요")
+            } else if (!text) {
+                alert("내용을 입력해 주세요")
+            }
         }
     }).catch((error) => {
         console.log(error)
