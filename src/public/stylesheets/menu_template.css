@@ -21,9 +21,13 @@ body {
     background-color: rgb(255, 230, 230);
     background-size: cover;
 
-    font-family: 'proxima-nova', 'proxima-nova-extra-condensed',  'YiSunShinDotumM', monospace;
+    font-family: 'proxima-nova', 'proxima-nova-extra-condensed', 'YiSunShinDotumM', monospace;
 
     overflow: hidden;
+}
+
+textarea, input {
+    font-family: 'proxima-nova', 'proxima-nova-extra-condensed', 'YiSunShinDotumM', monospace;
 }
 
 a { color: none; text-decoration: none; }
