@@ -3,6 +3,7 @@ const moment = require('moment')
 require('moment-timezone')
 
 const { forceLogin, alertLogin } = require('../utils/loginHandler')
+const logger = require('../config/winston')
 
 
 const routerGenerator = (db) => {
@@ -10,6 +11,7 @@ const routerGenerator = (db) => {
 
     router.get('/login', (req, res) => {
         const invitation_code = req.query.invitation_code
+        logger.info(`Login Tried: ${invitation_code}`)
         const rows = db.prepare(`SELECT * FROM users WHERE invitation_code='${invitation_code}'`).all()
         if(rows.length == 0) {
             res.send({success: false});

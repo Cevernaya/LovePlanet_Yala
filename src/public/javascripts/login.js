@@ -14,3 +14,10 @@ const login = () => {
         console.log(error)
     })
 }
+
+document.getElementById("input").onkeydown = (e) => {
+    console.log(e)
+    if(e.key === "Enter") {
+        login()
+    }
+}

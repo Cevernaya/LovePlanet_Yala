@@ -42,7 +42,7 @@ article {
     border: 2px solid black;
 }
 
-form {
+#form {
     height: 30%;
     display: flex;
     justify-content: center;
