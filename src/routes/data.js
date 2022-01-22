@@ -130,6 +130,7 @@ const routerGenerator = (db) => {
             JOIN users u
             ON n.user_id = u.user_id
             WHERE u.user_id='${user_id}'
+            ORDER BY notice_id DESC
         `).all();
         res.send({
             success: true,
@@ -161,8 +162,8 @@ const routerGenerator = (db) => {
     
         const runResult = db.prepare(`
             INSERT INTO reviews
-            (from_user, to_user, rating, body, locked) VALUES
-            (${from_user}, ${to_user}, ${rating}, '${body}', 0)
+            (from_user, to_user, rating, body, removable) VALUES
+            (${from_user}, ${to_user}, ${rating}, '${body}', 1)
         `).run()
     
         res.send({

@@ -23,6 +23,20 @@ const routerGenerator = (db) => {
         res.send({ success: true })
     })
 
+    router.get('/resetReview', (req, res) => {
+        const user_id = req.session.user_id
+
+        if(!user_id) {
+            res.send({ success: false })
+            return
+        }
+
+        db.prepare(`DELETE FROM reviews WHERE to_user=${user_id} AND removable=1`).run()
+        db.prepare(`INSERT INTO notices (user_id, title, body) VALUES (${user_id}, '치트 사용: 리뷰 초기화', '관리자에 의해 리뷰가 초기화되었습니다. 즐거운 러브플래닛 이용 되세요!')`).run()
+
+        res.send({ success: true })
+    })
+
     router.get('/copyLovecoin', (req, res) => {
         const user_id = req.session.user_id
 

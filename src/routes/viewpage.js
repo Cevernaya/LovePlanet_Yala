@@ -5,7 +5,12 @@ const { forceLogin, alertLogin } = require('../utils/loginHandler')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  if(req.session.user_id) {
+    res.status(302).redirect('/userShow')
+  }
+  else {
+    res.render('login', { title: 'Express' });
+  }
 });
 
 router.get('/announce', forceLogin, function(req, res, next) {

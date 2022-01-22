@@ -30,7 +30,7 @@ textarea, input {
     font-family: 'proxima-nova', 'proxima-nova-extra-condensed', 'YiSunShinDotumM', monospace;
 }
 
-a { color: none; text-decoration: none; }
+a { color: gray; text-decoration: none; }
 
 p { margin: 0; display: inline; }
 
