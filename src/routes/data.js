@@ -18,17 +18,12 @@ const routerGenerator = (db) => {
             return;
         }
     
-        if(!req.session.invitation_code) {
-            req.session.invitation_code = invitation_code
-            req.session.user_id = rows[0].user_id
-            if(!rows[0].first_login) {
-                db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`).run()
-            }
-            res.send({success: true})
+        req.session.invitation_code = invitation_code
+        req.session.user_id = rows[0].user_id
+        if(!rows[0].first_login) {
+            db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`).run()
         }
-        else {
-            res.send({success: false})
-        }
+        res.send({success: true})
     })
     
     router.get('/logout', (req, res) => {
@@ -135,6 +130,7 @@ const routerGenerator = (db) => {
             JOIN users u
             ON n.user_id = u.user_id
             WHERE u.user_id='${user_id}'
+            ORDER BY notice_id DESC
         `).all();
         res.send({
             success: true,
@@ -166,8 +162,8 @@ const routerGenerator = (db) => {
     
         const runResult = db.prepare(`
             INSERT INTO reviews
-            (from_user, to_user, rating, body, locked) VALUES
-            (${from_user}, ${to_user}, ${rating}, '${body}', 0)
+            (from_user, to_user, rating, body, removable) VALUES
+            (${from_user}, ${to_user}, ${rating}, '${body}', 1)
         `).run()
     
         res.send({
