@@ -18,17 +18,12 @@ const routerGenerator = (db) => {
             return;
         }
     
-        if(!req.session.invitation_code) {
-            req.session.invitation_code = invitation_code
-            req.session.user_id = rows[0].user_id
-            if(!rows[0].first_login) {
-                db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`).run()
-            }
-            res.send({success: true})
+        req.session.invitation_code = invitation_code
+        req.session.user_id = rows[0].user_id
+        if(!rows[0].first_login) {
+            db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`).run()
         }
-        else {
-            res.send({success: false})
-        }
+        res.send({success: true})
     })
     
     router.get('/logout', (req, res) => {
