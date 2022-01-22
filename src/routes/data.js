@@ -162,8 +162,8 @@ const routerGenerator = (db) => {
     
         const runResult = db.prepare(`
             INSERT INTO reviews
-            (from_user, to_user, rating, body, removable) VALUES
-            (${from_user}, ${to_user}, ${rating}, '${body}', 1)
+            (from_user, to_user, rating, body, removable, locked) VALUES
+            (${from_user}, ${to_user}, ${rating}, '${body}', 1, 0)
         `).run()
     
         res.send({
