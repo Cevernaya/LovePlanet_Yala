@@ -12,7 +12,7 @@ const routerGenerator = (db) => {
     router.get('/login', (req, res) => {
         const invitation_code = req.query.invitation_code
         logger.info(`Login Tried: ${invitation_code}`)
-        const rows = db.prepare(`SELECT * FROM users WHERE invitation_code='${invitation_code}'`).all()
+        const rows = db.query(`SELECT * FROM users WHERE invitation_code='${invitation_code}'`)
         if(rows.length == 0) {
             res.send({success: false});
             return;
@@ -21,7 +21,7 @@ const routerGenerator = (db) => {
         req.session.invitation_code = invitation_code
         req.session.user_id = rows[0].user_id
         if(!rows[0].first_login) {
-            db.prepare(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`).run()
+            db.query(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`)
         }
         res.send({success: true})
     })
@@ -32,7 +32,7 @@ const routerGenerator = (db) => {
     })
     
     router.get('/movieChars', (req, res) => {
-        const rows = db.prepare(`SELECT * FROM users WHERE movie_character=1`).all();
+        const rows = db.query(`SELECT * FROM users WHERE movie_character=1`)
         res.send({
             success: true,
             movieChars: rows
@@ -42,7 +42,7 @@ const routerGenerator = (db) => {
     router.get('/userData', (req, res) => {
         const invitation_code = req.session.invitation_code
         const user_id = req.query.user_id
-        const user = db.prepare(`SELECT * FROM users WHERE user_id=${user_id}`).all()
+        const user = db.query(`SELECT * FROM users WHERE user_id=${user_id}`)
         if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
             res.send({success: false})
             return
@@ -57,7 +57,7 @@ const routerGenerator = (db) => {
     router.get('/sessionUserData', alertLogin, (req, res) => {
         const invitation_code = req.session.invitation_code
         const user_id = req.session.user_id
-        const user = db.prepare(`SELECT * FROM users WHERE user_id=${user_id}`).all()
+        const user = db.query(`SELECT * FROM users WHERE user_id=${user_id}`)
         if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
             res.send({success: false})
             return
@@ -72,7 +72,7 @@ const routerGenerator = (db) => {
     router.get('/reviews', alertLogin, (req, res) => {
         const to_user = req.query.to_user
     
-        const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
+        const toUserData = db.query(`SELECT * FROM users WHERE user_id=${to_user}`)
         if(toUserData.length == 0) {
             res.send({
                 success: false,
@@ -88,7 +88,7 @@ const routerGenerator = (db) => {
             return
         }
     
-        const rows = db.prepare(`
+        const rows = db.query(`
             SELECT 
                 r.review_id review_id,
                 r.rating review_rating,
@@ -106,7 +106,7 @@ const routerGenerator = (db) => {
             JOIN users tu
             ON r.to_user = tu.user_id
             WHERE r.to_user=${to_user}
-        `).all();
+        `);
         
     
         const filtered = rows.map(row => {
@@ -124,14 +124,14 @@ const routerGenerator = (db) => {
     
     router.get('/notices', alertLogin, (req, res) => {
         const user_id = req.session.user_id;
-        const rows = db.prepare(`
+        const rows = db.query(`
             SELECT n.title title, n.body body, n.notice_id notice_id
             FROM notices n
             JOIN users u
             ON n.user_id = u.user_id
             WHERE u.user_id='${user_id}'
             ORDER BY notice_id DESC
-        `).all();
+        `);
         res.send({
             success: true,
             notices: rows
@@ -144,7 +144,7 @@ const routerGenerator = (db) => {
         const rating = req.body.rating
         const body = req.body.body
     
-        const toUserData = db.prepare(`SELECT * FROM users WHERE user_id=${to_user}`).all()
+        const toUserData = db.query(`SELECT * FROM users WHERE user_id=${to_user}`)
         if(toUserData.length == 0) {
             res.send({
                 success: false,
@@ -160,11 +160,11 @@ const routerGenerator = (db) => {
             return
         }
     
-        const runResult = db.prepare(`
+        const runResult = db.query(`
             INSERT INTO reviews
             (from_user, to_user, rating, body, removable, locked) VALUES
             (${from_user}, ${to_user}, ${rating}, '${body}', 1, 0)
-        `).run()
+        `)
     
         res.send({
             success: true,
@@ -177,7 +177,7 @@ const routerGenerator = (db) => {
         const user_id = req.session.user_id
         const review_id = req.query.review_id
 
-        const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()
+        const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)
         if(!nowLovecoin) {
             res.send({
                 success: false,
@@ -186,7 +186,7 @@ const routerGenerator = (db) => {
             return
         }
 
-        const nowReview = db.prepare(`SELECT * FROM reviews WHERE review_id=${review_id}`).all()
+        const nowReview = db.query(`SELECT * FROM reviews WHERE review_id=${review_id}`)
         if(!nowReview) {
             res.send({
                 success: false,
@@ -212,10 +212,10 @@ const routerGenerator = (db) => {
         }
 
         const newLovecoin = nowLovecoin[0].lovecoin - nowReview[0].cost
-        db.prepare(`UPDATE users SET lovecoin=${newLovecoin} WHERE user_id=${user_id}`).run()
-        db.prepare(`UPDATE reviews SET locked=0 WHERE review_id=${review_id}`).run()
+        db.query(`UPDATE users SET lovecoin=${newLovecoin} WHERE user_id=${user_id}`)
+        db.query(`UPDATE reviews SET locked=0 WHERE review_id=${review_id}`)
 
-        const newReview = db.prepare(`SELECT * FROM reviews WHERE review_id=${review_id}`).all()
+        const newReview = db.query(`SELECT * FROM reviews WHERE review_id=${review_id}`)
         res.send({
             success: true,
             review: newReview[0]
@@ -225,7 +225,7 @@ const routerGenerator = (db) => {
     
     router.get('/nowLovecoin', alertLogin, (req, res) => {
         const user_id = req.session.user_id
-        const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
+        const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
     
         res.send({
             success: true,
@@ -237,7 +237,7 @@ const routerGenerator = (db) => {
         const user_id = req.session.user_id
         const diffLovecoin = req.body.diffLovecoin
         
-        const nowLovecoin = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
+        const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
         const afterLovecoin = nowLovecoin + diffLovecoin
         
         if(afterLovecoin < 0) {
@@ -249,13 +249,13 @@ const routerGenerator = (db) => {
             return
         }
     
-        db.prepare(`
+        db.query(`
             UPDATE users
             SET lovecoin=${afterLovecoin}
             WHERE user_id=${user_id}
-        `).run()
+        `)
     
-        const result = db.prepare(`SELECT lovecoin FROM users WHERE user_id=${user_id}`).all()[0].lovecoin
+        const result = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
     
         res.send({
             success: true,
@@ -266,7 +266,7 @@ const routerGenerator = (db) => {
     
     router.get('/getMovieReviews', (req, res) => {
         const user_id = req.session.user_id
-        const reviews = db.prepare(`SELECT * FROM movie_reviews ORDER BY movie_review_id DESC`).all()
+        const reviews = db.query(`SELECT * FROM movie_reviews ORDER BY movie_review_id DESC`)
     
         const filtered = reviews.map(review => {
             if(review.hidden && review.user_id != user_id) {
@@ -287,11 +287,11 @@ const routerGenerator = (db) => {
         const body = req.body.body
         const hidden = req.body.hidden
     
-        const runResult = db.prepare(`
+        const runResult = db.query(`
             INSERT INTO movie_reviews
             (user_id, user_name, body, hidden) VALUES
             (${user_id}, '${user_name}', '${body}', ${hidden})
-        `).run()
+        `)
     
         res.send({
             success: true,
@@ -300,7 +300,7 @@ const routerGenerator = (db) => {
     })
 
     router.get('/rankDodge', (req, res) => {
-        const ranks = db.prepare(`SELECT nickname, score FROM dodge_ranking ORDER BY score DESC LIMIT 10`).all()
+        const ranks = db.query(`SELECT nickname, score FROM dodge_ranking ORDER BY score DESC LIMIT 10`)
         res.send({ success: true, ranks })
     })
 
@@ -309,11 +309,11 @@ const routerGenerator = (db) => {
         const name = req.body.name
         const score = req.body.score
 
-        const runResult = db.prepare(`
+        const runResult = db.query(`
             INSERT INTO dodge_ranking
             (user_id, nickname, score) VALUES
             (${user_id}, '${name}', ${score})
-        `).run()
+        `)
 
         res.send({
             success: true,
@@ -322,7 +322,7 @@ const routerGenerator = (db) => {
     })
 
     router.get('/rankGraph', (req, res) => {
-        const ranks = db.prepare(`SELECT score FROM graph_ranking ORDER BY score DESC LIMIT 10`).all()
+        const ranks = db.query(`SELECT score FROM graph_ranking ORDER BY score DESC LIMIT 10`)
         res.send({ success: true, ranks })
     })
 
@@ -330,11 +330,11 @@ const routerGenerator = (db) => {
         const user_id = req.session.user_id
         const score = req.body.score
 
-        const runResult = db.prepare(`
+        const runResult = db.query(`
             INSERT INTO graph_ranking
             (user_id, score) VALUES
             (${user_id}, ${score})
-        `).run()
+        `)
 
         res.send({
             success: true,
