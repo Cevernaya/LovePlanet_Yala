@@ -8,12 +8,20 @@ const session = require('express-session');
 const logger = require('./config/winston')
 require('dotenv').config()
 
-const sqlite = require('better-sqlite3');
-const db = new sqlite(path.join(__dirname, 'database', 'database.db'));
+const mysql = require('sync-mysql');
+const mysqlHost = process.env.PRODUCTION ? process.env.DB_PROD : process.env.DB_TEST | 'localhost'
+const mysqlPassword = process.env.PRODUCTION ? process.env.DB_PROD_PW : process.env.DB_TEST_PW | ''
+const mysqlConn = {
+  host: mysqlHost,
+  user: 'admin',
+  password: mysqlPassword,
+  database: 'loveplanet'
+}
+const db = new mysql(mysqlConn)
 
 var viewsRouter = require('./routes/viewpage');
 var dataRouter = require('./routes/data')(db);
-var sessionRouter = require('./routes/session')
+var sessionRouter = require('./routes/session');
 var cheatRouter = require('./routes/cheat')(db)
 
 var app = express();
