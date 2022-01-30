@@ -87,43 +87,92 @@ const routerGenerator = (db) => {
             })
             return
         }
-    
-        const rows = db.query(`
-            SELECT 
-                r.review_id review_id,
-                r.rating review_rating,
-                r.body review_body,
-                r.locked review_locked,
-                r.cost review_cost,
-                fu.rank fu_rank,
-                fu.name fu_name,
-                fu.profile_image fu_profile_image,
-                tu.rank tu_rank,
-                tu.name tu_name
-            FROM reviews r
-            JOIN users fu
-            ON r.from_user = fu.user_id
-            JOIN users tu
-            ON r.to_user = tu.user_id
-            WHERE r.to_user=${to_user}
-        `);
+
+        if(toUserData[0].movie_character) { // for movie character review request
+            const rows = db.query(`
+                SELECT 
+                    r.review_id review_id,
+                    r.rating review_rating,
+                    r.body review_body,
+                    r.locked review_locked,
+                    r.cost review_cost,
+                    fu.rank fu_rank,
+                    fu.name fu_name,
+                    fu.profile_image fu_profile_image,
+                    tu.rank tu_rank,
+                    tu.name tu_name
+                FROM reviews r
+                JOIN users fu
+                ON r.from_user = fu.user_id
+                JOIN users tu
+                ON r.to_user = tu.user_id
+                WHERE r.to_user=${to_user}
+            `);
+            
         
+            const filtered = rows.map(row => {
+                if(row.review_locked) {
+                    row.review_rating = 0;
+                    row.review_body = '잠겨 있는 리뷰입니다.';
+                }
+                return row;
+            })
+            res.send({
+                success: true,
+                reviews: filtered
+            })
+        }
+        else {  // for user review request
+            const userData = db.query(`SELECT * FROM users WHERE user_id=${req.session.user_id}`)[0]
+            const unlockedNum = userData.reviews_unlocked
+            
+            const userReviewData = JSON.parse(JSON.stringify(require('../database/basicReviews')))
+
+            const filtered = userReviewData.map((review, i) => {
+                if(i < unlockedNum) {
+                    review.review_locked = 0
+                }
+                else {
+                    review.review_rating = 0;
+                    review.review_body = '잠겨 있는 리뷰입니다.';
+                }
+                review.tu_name = userData.name
+                review.tu_rank = userData.rank
+                return review
+            }).slice(0, unlockedNum+1)
+
+            const dbReviews = db.query(`
+                SELECT 
+                    r.review_id review_id,
+                    r.rating review_rating,
+                    r.body review_body,
+                    r.locked review_locked,
+                    r.cost review_cost,
+                    fu.rank fu_rank,
+                    fu.name fu_name,
+                    fu.profile_image fu_profile_image,
+                    tu.rank tu_rank,
+                    tu.name tu_name
+                FROM reviews r
+                JOIN users fu
+                ON r.from_user = fu.user_id
+                JOIN users tu
+                ON r.to_user = tu.user_id
+                WHERE r.to_user=${to_user}
+            `);
+
+            res.send({
+                success: true,
+                reviews: [...filtered, ...dbReviews]
+            })
+
+        }
     
-        const filtered = rows.map(row => {
-            if(row.review_locked) {
-                row.review_rating = 0;
-                row.review_body = '잠겨 있는 리뷰입니다.';
-            }
-            return row;
-        })
-        res.send({
-            success: true,
-            reviews: filtered
-        })
     })
     
     router.get('/notices', alertLogin, (req, res) => {
         const user_id = req.session.user_id;
+        const basicNotices = require('../database/basicNotices')
         const rows = db.query(`
             SELECT n.title title, n.body body, n.notice_id notice_id
             FROM notices n
@@ -134,7 +183,7 @@ const routerGenerator = (db) => {
         `);
         res.send({
             success: true,
-            notices: rows
+            notices: [...rows, ...basicNotices]
         })
     })
     
@@ -175,9 +224,10 @@ const routerGenerator = (db) => {
 
     router.get('/unlockReview', alertLogin, (req, res) => {
         const user_id = req.session.user_id
-        const review_id = req.query.review_id
 
-        const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)
+        const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
+        const unlockedNum = db.query(`SELECT reviews_unlocked FROM users WHERE user_id=${user_id}`)[0].reviews_unlocked
+        const targetReview = require('../database/basicReviews')[unlockedNum]
         if(!nowLovecoin) {
             res.send({
                 success: false,
@@ -186,24 +236,7 @@ const routerGenerator = (db) => {
             return
         }
 
-        const nowReview = db.query(`SELECT * FROM reviews WHERE review_id=${review_id}`)
-        if(!nowReview) {
-            res.send({
-                success: false,
-                message: "해당 리뷰가 존재하지 않습니다!"
-            })
-            return
-        }
-        
-        if(!nowReview[0].locked) {
-            res.send({
-                success: false,
-                message: "이미 열려있는 리뷰입니다!"
-            })
-            return
-        }
-        
-        if(nowLovecoin[0].lovecoin < nowReview[0].cost) {
+        if(nowLovecoin < targetReview.review_cost) {
             res.send({
                 success: false,
                 message: "보유 러브코인이 부족합니다!"
@@ -211,14 +244,13 @@ const routerGenerator = (db) => {
             return
         }
 
-        const newLovecoin = nowLovecoin[0].lovecoin - nowReview[0].cost
-        db.query(`UPDATE users SET lovecoin=${newLovecoin} WHERE user_id=${user_id}`)
-        db.query(`UPDATE reviews SET locked=0 WHERE review_id=${review_id}`)
 
-        const newReview = db.query(`SELECT * FROM reviews WHERE review_id=${review_id}`)
+        const newLovecoin = nowLovecoin - targetReview.review_cost
+        db.query(`UPDATE users SET lovecoin=${newLovecoin} WHERE user_id=${user_id}`)
+        db.query(`UPDATE users SET reviews_unlocked=${unlockedNum + 1} WHERE user_id=${user_id}`)
+
         res.send({
             success: true,
-            review: newReview[0]
         })
         
     })

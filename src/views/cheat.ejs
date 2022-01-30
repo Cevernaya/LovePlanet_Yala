@@ -11,12 +11,15 @@
     <p>※러브플래닛 서비스 관리자용※</p>
     <h2>나의 리뷰 모두 잠금해제</h2>
     <button onclick="unlockAll()">해제!</button>
-    <h2>나쁜 리뷰 삭제</h2>
-    <button onclick="resetReview()">삭제!</button>
+    <h2>나의 리뷰 초기화</h2>
+    <button onclick="resetReview()">기억을... 잃었어요...</button>
+    <h2>악성 리뷰 제거</h2>
+    <p>나쁜 평가를 준 리뷰를 제거합니다.</p>
+    <button onclick="deleteBadReview()">읍,, 읍읍,,!!</button>
     <h2>나의 러브코인 +1조</h2>
     <button onclick="showMeLovecoin()">코인이 복사가 된다고?!</button>
     <h2>나의 리뷰 관리(beta)</h2>
-    <p>최-신 AI 딥머신러닝 블록체인 메타버스 기술을 사용하여 나의 리뷰를 좋은 리뷰로 가득 채웁니다.</p>
+    <p>최-신 AI 딥머신러닝 블록체인 메타버스 기술을 사용하여 리뷰를 자동 생성합니다.</p>
     <button onclick="autoReview()">가즈아~</button>
     <h2>로그아웃</h2>
     <button onclick="logout()">잘가요...</button>
@@ -33,6 +36,15 @@
 
         const resetReview = () => {
             fetch('/cheat/resetReview')
+                .then(res => res.json())
+                .then(res => {
+                    if(res.success) alert("성공!")
+                    else alert("실패...(예기치 못한 서버 문제입니다)")
+                })
+        }
+
+        const deleteBadReview = () => {
+            fetch('/cheat/deleteBadReview')
                 .then(res => res.json())
                 .then(res => {
                     if(res.success) alert("성공!")
