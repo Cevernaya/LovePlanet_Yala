@@ -26,7 +26,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         const user_analysis = document.createElement("img")
         user_analysis.setAttribute("src", `/images/snsAnalysis.png`)
         user_analysis.setAttribute("alt", "sns analysis")
-        user_analysis.setAttribute("onclick", "location.href='/sysAnalysis'")
+        user_analysis.setAttribute("onclick", "location.href='/snsAnalysis'")
         user_analysis.className = "user_sns"
         user_header.appendChild(user_insta)
         user_header.appendChild(user_analysis)
