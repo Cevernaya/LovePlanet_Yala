@@ -52,3 +52,17 @@ const overlayReturnColor = () => {
     buttons[2].innerHTML = '닫기'
 
 }
+
+const buttonMyPage = () => {
+    location.href = "/userShow"
+}
+
+const buttonLogout = () => {
+    fetch("/data/logout")
+        .then(res => res.json())
+        .then(res => {
+            if(res.success) {
+                location.href = "/"
+            }
+        })
+}

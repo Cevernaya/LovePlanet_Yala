@@ -6,7 +6,7 @@ const login = () => {
         return response.json()
     }).then((response) => {
         if (response.success == true) {
-            location.replace("/userShow")
+            location.replace("/")
         } else {
             alert("초대 코드를 확인해 주세요")
         }

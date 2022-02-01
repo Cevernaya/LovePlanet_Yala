@@ -8,11 +8,49 @@ a { color: inherit; }
 }
 
 .content_header {
-    padding: 40px 0px 10px 60px;
+    padding: 30px 60px 20px 60px;
 
     color: rgb(88, 88, 88);
     font-size: 40px;
     text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
+
+    display: flex;
+    align-items: center;
+}
+
+.content_header_buttons {
+    flex: 1;
+    height: 100%;
+
+    box-sizing: border-box;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content_header_buttons button {
+    width: fit-content;
+    height: 50px;
+    padding: 0px 14px 0px 14px;
+    
+    border-radius: 25px;
+    border: 2px solid #e2b2f5;
+
+    background-color: #fdf4fd;
+    color: #ca6fee;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.content_header_buttons button:hover {
+    border: 2px solid #e2b2f5;
+    background-color: #e2b2f5;
+    color: white;
 }
 
 .content_wrapper {
