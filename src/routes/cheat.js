@@ -18,7 +18,7 @@ const routerGenerator = (db) => {
         }
 
         db.query(`UPDATE reviews SET locked=0 WHERE to_user=${user_id}`)
-        db.query(`UPDATE users SET reviews_unlocked=1000000 WHERE to_user=${user_id}`)
+        db.query(`UPDATE users SET reviews_unlocked=1000000 WHERE user_id=${user_id}`)
         db.query(`INSERT INTO notices (user_id, title, body) VALUES (${user_id}, '치트 사용: 모든 리뷰 잠금해제', '관리자에 의해 모든 잠금이 해제되었습니다. 즐거운 러브플래닛 이용 되세요!')`)
 
         res.send({ success: true })
