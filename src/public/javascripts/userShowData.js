@@ -17,6 +17,20 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_rank.setAttribute("alt", "rank of user")
     user_rank.className = "user_grade_image"
     user_header.appendChild(user_rank)
+    if (user.user_id == 2) {
+        const user_insta = document.createElement("img")
+        user_insta.setAttribute("src", `/images/logos/instagram.png`)
+        user_insta.setAttribute("alt", "instagram logo")
+        user_insta.setAttribute("onclick", "location.href='/instaShow'")
+        user_insta.className = "user_sns"
+        const user_analysis = document.createElement("img")
+        user_analysis.setAttribute("src", `/images/snsAnalysis.png`)
+        user_analysis.setAttribute("alt", "sns analysis")
+        user_analysis.setAttribute("onclick", "location.href='/sysAnalysis'")
+        user_analysis.className = "user_sns"
+        user_header.appendChild(user_insta)
+        user_header.appendChild(user_analysis)
+    }
 
     const user_login_year = `${user.first_login}`.slice(0, 4)
     const user_login_month = `${user.first_login}`.slice(5, 7)
