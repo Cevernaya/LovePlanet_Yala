@@ -300,24 +300,8 @@ a { color: inherit; }
     padding: 20px;
 }
 
-.popup_review_header {
-    
-}
-
 .popup_review_userphoto {
     width: 120px;
     height: 120px;
     border-radius: 100%;
-}
-
-.popup_review_userinfo {
-
-}
-
-.popup_review_body {
-
-}
-
-.popup_review_footer {
-
 }
