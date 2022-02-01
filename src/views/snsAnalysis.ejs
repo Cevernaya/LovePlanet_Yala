@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/menu_template.css">
+    <link rel="stylesheet" href="stylesheets/snsAnalysis.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.typekit.net/hnd0qtt.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="full">
+        <div class="menu">
+            <div class="menu_box">
+                    
+                <div class="menu_top">
+                    <p id="menu_top_text">🤍 Love Planet</p>
+                    <img id="menu_top_image" src="images/user/05.jpg">
+                </div>
+                <div class="menu_list">
+                    <ul id="menu_list_wrapper">
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/announce">Notice</a></li>
+                        <hr>
+                        <li><a href="/reviews">Recent Reviews</a></li>
+                        <li><a href="/lovecoin">Lovecoin</a></li>
+                        <li><a href="/users">User Management</a></li>
+                        <hr>
+                        <li><a href="/systemDocument">System Document</a></li>
+                        <li><a href="/systemFeedback">System Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content_row">
+                <div id="overall_result" class="dashboard_box">
+                    <div class="dashboard_title">SNS Analysis Result</div>
+                    <div class="loading">
+                        <div class="loader"></div>
+                        <p>분석중...</p>
+                    </div>
+                    <div class="arrange_row" style="display: none;">
+                        <p class="result_text">러브 플래닛 가짜 친구 필터링 시스템 분석 결과, 총 30,049명의 팔로워 중 실제 교류가 있는 계정은 10명 이내입니다.</p>
+                        <div style="width: 600px; height: 350px; margin-left: 20px;"><canvas style="width: 600px; height: 300px;" id="chart1_1"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_row" style="height: fit-content;">
+                <div id="insta_result" class="dashboard_box">
+                    <div class="dashboard_title">Instagram</div>
+                    <div class="loading">
+                        <div class="loader"></div>
+                        <p>분석중...</p>
+                    </div>
+                    <div class="arrange_row" style="display: none;">
+                        <p class="result_text">
+                            이종수 (@strong_jongsoo) 님의<br>인스타그램 계정 분석 결과,<br>
+                            <br>
+                            게시글 16 / 팔로워 30.0K / 팔로우 48<br>
+                            실질 팔로워 38 (0.127%)<br>
+                            <br>
+                            으로 유효 교류가 적습니다.
+                        </p>
+                        <div style="height: 350px; margin-right: 20px;"><canvas id="chart1_2"></canvas></div>
+                        <div style="height: 350px; margin-right: 20px;"><canvas id="chart1_3"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_row" style="height: fit-content;">
+                <div id="insta_result" class="dashboard_box">
+                    <div class="dashboard_title">Facebook</div>
+                    <div class="loading">
+                        <div class="loader"></div>
+                        <p>분석중...</p>
+                    </div>
+                    <div class="arrange_row" style="display: none;">
+                        <p class="result_text">
+                            이종수 (jongsoo34) 님의 페이스북 <br>계정 분석 결과,<br>
+                            <br>
+                            게시글 16 / 친구 10,193 <br>
+                            반응 지수 32/1,845 (1.734%)<br>
+                            <br>
+                            으로 유의미한 친밀도가 낮습니다.
+                        </p>
+                        <div style="height: 350px; margin-right: 20px;"><canvas id="chart2_2"></canvas></div>
+                        <div style="height: 350px; margin-right: 20px;"><canvas id="chart2_3"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        
+
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="/javascripts/snsAnalysis.js"></script>
+
+</body>
+</html>

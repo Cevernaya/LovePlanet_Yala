@@ -49,8 +49,6 @@
                         <div class="review_info">
                             <input type="hidden" name="hidden" value="0" id="hidden_check_hidden" class="hidden_checkbox" checked/>
                             <input placeholder="닉네임" class="review_name" type="text" name="user_name"/>
-                            <input type="checkbox" name="hidden" value="1" id="hidden_check" class="hidden_checkbox"/>
-                            <label for="hidden_check">비밀댓글</label>
                         </div>
                         <div class="review_body_box">
                             <textarea name="body" placeholder="내용"></textarea>
@@ -102,11 +100,6 @@
     </div> -->
 </body>
 
-<script>
-    if(document.getElementById("hidden_check").checked) {
-    document.getElementById("hidden_check_hidden").disabled = true;
-}
-</script>
 <script src="/javascripts/movieReview.js"></script>
 
 </html>
