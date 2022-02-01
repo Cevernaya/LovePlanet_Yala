@@ -5,6 +5,7 @@ require('moment-timezone')
 const { forceLogin, alertLogin } = require('../utils/loginHandler')
 const logger = require('../config/winston')
 
+const BASIC_INCOME = 100
 
 const routerGenerator = (db) => {
     const router = express.Router();
@@ -373,6 +374,27 @@ const routerGenerator = (db) => {
             success: true,
             result: runResult
         })
+    })
+
+    router.get('/basicIncome', (req, res) => {
+        res.send({
+            success: true,
+            basicIncome: BASIC_INCOME
+        })
+    })
+
+    router.get('/begBasicIncome', forceLogin, (req, res) => {
+        const user_id = req.session.user_id
+
+        const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
+        
+        if(nowLovecoin < BASIC_INCOME) {
+            db.query(`UPDATE users SET lovecoin=${BASIC_INCOME} WHERE user_id=${user_id}`)
+            res.send({ success: true })
+        }
+        else {
+            res.send({ success: true })
+        }
     })
 
     return router
