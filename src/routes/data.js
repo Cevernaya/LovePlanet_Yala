@@ -20,6 +20,7 @@ const routerGenerator = (db) => {
     
         req.session.invitation_code = invitation_code
         req.session.user_id = rows[0].user_id
+        req.session.user_name = rows[0].name
         if(!rows[0].first_login) {
             db.query(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`)
         }
@@ -317,7 +318,7 @@ const routerGenerator = (db) => {
         const user_id = req.session.user_id
         const user_name = req.body.user_name
         const body = req.body.body
-        const hidden = req.body.hidden
+        const hidden = 0    //req.body.hidden
     
         const runResult = db.query(`
             INSERT INTO movie_reviews
