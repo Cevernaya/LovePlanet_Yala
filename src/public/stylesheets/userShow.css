@@ -51,8 +51,6 @@ h3 {
 .dashboard_box {
     background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 3px );
-    -webkit-backdrop-filter: blur( 3px );
     border-radius: 20px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 
@@ -159,6 +157,46 @@ h3 {
     color:rgb(120, 120, 120);
     font-size: 25px;
     line-height: 35px;
+}
+
+.reset_coin {
+    margin-left: 10px;
+    margin-top: 3px;
+    width: 80px;
+    height: 38px;
+    line-height: 38px;
+    border: 3px solid rgb(214, 124, 146);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 24px;
+    user-select: none;
+
+    cursor: pointer;
+}
+
+.reset_coin:active {
+    transform: translateY(2px);
+}
+
+.reset_coin:hover {
+    background-color: rgb(255, 228, 232);
+}
+
+.reset_coin_popup {
+    width: 400px;
+    height: 100px;
+    line-height: 36px;
+    padding: 10px;
+    position: absolute;
+    bottom: -50px;
+    left: 110px;
+    font-size: 24px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px 0 gray;
+    z-index: 1;
+
+    display: none;
 }
 
 #dashboard_reviews {
@@ -288,6 +326,7 @@ h3 {
 .user_body {
     margin-left: 40px;
     flex: 1;
+    position: relative;
 }
 
 #dashboard_reviews ul li .review_more {
