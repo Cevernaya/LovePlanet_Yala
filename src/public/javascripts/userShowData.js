@@ -3,7 +3,12 @@ const querys = new URLSearchParams(querystring)
 const user_id = querys.get('user_id')
 
 const charge = () => {
-    alert("돈이 많이 궁하셨군요... 도움을 좀 드릴테니 다음엔 더 열심히 해보세요!")
+    alert("담당 관리자(제시카)에게 러브코인을 구걸하시겠습니까?")
+    alert("제시카가 당신에게 자비를 베풀 지 고민하고 있습니다...")
+    alert("제시카가 당신을 마음에 들어하지 않습니다...")
+    alert("하지만 당신이 나락으로 떨어지는 모습을 한 번쯤 더 보고싶어하는 것 같군요!")
+    alert("제시카는 당신에게 약간의 자비를 베풀어보기로 결정했습니다.")
+
     fetch('/data/begBasicIncome')
     .then((response) => {
         return response.json()
@@ -101,7 +106,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         user_reset_coin.addEventListener("mouseenter", mouseentered)
         user_reset_coin.addEventListener("mouseleave", mouseleft)
         const user_reset_hover = document.createElement("div")
-        user_reset_hover.innerHTML = '하하 돈을 잃으셨나요?<br>더블클릭 하신다면 도와드리죠'
+        user_reset_hover.innerHTML = '관리자에게 러브코인 구걸하기'
         user_reset_hover.className = "reset_coin_popup"
         user_reset_hover.id = "reset_popup"
         user_body.appendChild(user_reset_hover)
