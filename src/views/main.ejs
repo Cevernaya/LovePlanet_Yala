@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="stylesheets/menu_template.css">
-    <link rel="stylesheet" href="stylesheets/overlay.css">
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/hnd0qtt.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Love Planet</title>
 </head>
 <body>
     <div class="full">
@@ -20,18 +19,18 @@
                     
                 <div class="menu_top">
                     <p id="menu_top_text">🤍 Love Planet</p>
-                    <img id="menu_top_image" src="images/user/05.jpg">
+                    <img id="menu_top_image" src="images/user/02.jpg">
                 </div>
                 <div class="menu_list">
                     <ul id="menu_list_wrapper">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="/announce">Notice</a></li>
+                        <li><a href="/announce">Notices</a></li>
                         <hr>
-                        <li><a href="/reviews">Recent Reviews</a></li>
-                        <li><a href="/lovecoin">Lovecoin</a></li>
-                        <li><a href="/users">User Management</a></li>
+                        <li><a href="/lovecoin">Lovecoin Mining</a></li>
+                        <li><a href="/lovecoin_chart">Lovecoin Betting</a></li>
+                        <li><a href="/users">Users</a></li>
                         <hr>
-                        <li><a href="/systemDocument">System Document</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/17iISWCmPrqZLcxa-T10jm5ApPSg5Szdz?usp=sharing"   target="_blank">System Document</a></li>
                         <li><a href="/systemFeedback">System Feedback</a></li>
                     </ul>
                 </div>
@@ -40,7 +39,7 @@
 
         <div class="content">
             <div class="content_header">
-                <p>안녕하세요, Jessica님!</p>
+                <p>안녕하세요, <%= user_name %>님!</p>
                 <div class="content_header_buttons">
                     <button onclick="buttonMyPage()">My Page >></button>
                     <button onclick="buttonLogout()">Logout</button>
@@ -141,26 +140,6 @@
     
     <script type="text/javascript" src="/javascripts/coin.js"></script>
     <script type="text/javascript" src="/javascripts/main.js"></script>
-    <script type="text/javascript" src="/javascripts/overlay.js"></script>
-
-    <div id="overlay" style="opacity: 0; display: none;">
-        <div class="popup_box popup_review">
-            <div class="popup_review_header">
-                <img class="popup_review_userphoto" src="/images/user/05.jpg">
-                <div class="popup_review_userinfo">
-                    About. Jessica<br>
-                    <div class="popup_review_star"></div>
-                </div>
-            </div>
-            <div class="popup_review_body">
-                <textarea id="reveiw_textarea">제시카 님의 성격. 활달하고 사교성이 좋아 처음 보는 사람과도 금방 친구가 됩니다. 저도 처음 만났을 때 제시카의 밝고 친근한 모습에 반해 호감을 갖게 됐어요. 하지만 연인이 되고 나니 그런 성격이 마냥 좋기만 한 건 아니더라고요. 모두에게 친절한 여자, 친구와 애인에게 똑같이 구는 여자는 생각보다 제가 감당하기 어려웠어요. 제시카가 소위 남사친이라는 사람들 네 명이랑 여행을 가서 연락이 두절됐을 때는 진짜 이게 장난이 아니구나 싶었죠. 아니 이 썅년이 전화를 밤새도록 꺼놓은 거예요. 그러면서 친구 폰으로 자기 SNS에 들어갔는지 밤새 남자들이랑 술 마시고 껴안고 기대있는 사진 이딴 거나 계속 올려대는데 또 디엠 보내면 읽지도 않아요.  다음날 못참겠다고, 헤어지자고 하니까 하는 말이 자기는 원래 술 취하면 핸드폰 꺼놓고, SNS 하면서 사람들한테 앵기는 게 주사라고....이게 말이 됩니까? 개지랄 염병하는 소리지? 제발 얘처럼 개념없고 술 좋아하는 사람은 거르세요 제발!!!!</textarea>
-            </div>
-            <div class="popup_review_footer">
-                <div class="popup_button" onclick="overlayTextColor()">수정</div>
-                <div class="popup_button" onclick="overlayReturnColor()">삭제</div>
-                <div class="popup_button" onclick="overlayOff()">닫기</div>
-            </div>
-        </div>
-    </div>
+    
 </body>
 </html>

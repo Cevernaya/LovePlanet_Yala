@@ -2,11 +2,33 @@ const querystring = location.search
 const querys = new URLSearchParams(querystring)
 const user_id = querys.get('user_id')
 
+const charge = () => {
+    alert("돈이 많이 궁하셨군요... 도움을 좀 드릴테니 다음엔 더 열심히 해보세요!")
+    fetch('/data/begBasicIncome')
+    .then((response) => {
+        return response.json()
+    })
+    .then((response) => {
+        if (response.success) {
+            location.reload()
+        }
+    })
+}
+
+const mouseentered = () => {
+    document.getElementById("reset_popup").style.display = "block"
+}
+
+const mouseleft = () => {
+    document.getElementById("reset_popup").style.display = "none"
+}
+
 fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
 .then((response) => {
     return response.json()
 })
 .then((response) => {
+    // user info of user page (profile)
     const user = response.sessionUser[0]
     const user_header = document.querySelector(".user_name")
     const user_name = document.createElement("h1")
@@ -18,6 +40,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_rank.className = "user_grade_image"
     user_header.appendChild(user_rank)
     if (user.user_id == 2) {
+        // jongsoo has instagram page & SNS analysis
         const user_insta = document.createElement("img")
         user_insta.setAttribute("src", `/images/logos/instagram.png`)
         user_insta.setAttribute("alt", "instagram logo")
@@ -49,6 +72,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
     user_info.insertBefore(user_img, user_body)
 
     if (user.movie_character == 1) {
+        // review button & form for movie characters
         const dashboard_title = document.querySelector(".dashboard_title")
         const write_button = document.createElement("div")
         write_button.innerHTML = "Write"
@@ -68,6 +92,20 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         review_touser.setAttribute("value", `${user.user_id}`)
         review_touser.setAttribute("style", "display: none;")
         review_to.appendChild(review_touser)
+    } else if (user.lovecoin < 100) {
+        // free charging button when lovecoin < 100
+        const user_reset_coin = document.createElement("div")
+        user_reset_coin.className = "reset_coin"
+        user_reset_coin.innerText = "충전"
+        user_reset_coin.addEventListener("dblclick", charge)
+        user_reset_coin.addEventListener("mouseenter", mouseentered)
+        user_reset_coin.addEventListener("mouseleave", mouseleft)
+        const user_reset_hover = document.createElement("div")
+        user_reset_hover.innerHTML = '하하 돈을 잃으셨나요?<br>더블클릭 하신다면 도와드리죠'
+        user_reset_hover.className = "reset_coin_popup"
+        user_reset_hover.id = "reset_popup"
+        user_body.appendChild(user_reset_hover)
+        user_body.appendChild(user_reset_coin)
     }
 
     return user.user_id
