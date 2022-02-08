@@ -106,7 +106,7 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
         user_reset_coin.addEventListener("mouseenter", mouseentered)
         user_reset_coin.addEventListener("mouseleave", mouseleft)
         const user_reset_hover = document.createElement("div")
-        user_reset_hover.innerHTML = '관리자에게 러브코인 구걸하기'
+        user_reset_hover.innerHTML = '더블클릭으로 관리자에게 러브코인 구걸하기'
         user_reset_hover.className = "reset_coin_popup"
         user_reset_hover.id = "reset_popup"
         user_body.appendChild(user_reset_hover)
