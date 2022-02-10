@@ -14,25 +14,47 @@ const routerGenerator = (db) => {
         const invitation_code = req.query.invitation_code
         logger.info(`Login Tried: ${invitation_code}`)
         const rows = db.query(`SELECT * FROM users WHERE invitation_code='${invitation_code}'`)
-        if(rows.length == 0) {
-            res.send({success: false});
+        if (rows.length == 0) {
+            res.send({ success: false });
             return;
         }
-    
-        req.session.invitation_code = invitation_code
-        req.session.user_id = rows[0].user_id
-        req.session.user_name = rows[0].name
-        if(!rows[0].first_login) {
-            db.query(`UPDATE users SET first_login='${moment().tz('Asia/Seoul').format()}' WHERE user_id=${req.session.user_id}`)
+        console.log(rows[0])
+
+        if (!rows[0].first_login) {
+            const name = req.query.name
+            const age = req.query.age
+            const address = req.query.address
+            try {
+                db.query(`
+                    UPDATE users 
+                    SET first_login='${moment().tz('Asia/Seoul').format()}',
+                        name='${name}',
+                        age='만 ${age}세',
+                        address='${address}'
+                    WHERE user_id=${rows[0].user_id}
+                `)
+
+            } catch (e) {
+                console.log(e)
+            }
+
+            req.session.invitation_code = invitation_code
+            req.session.user_id = rows[0].user_id
+            req.session.user_name = name
         }
-        res.send({success: true})
+        else {
+            req.session.invitation_code = invitation_code
+            req.session.user_id = rows[0].user_id
+            req.session.user_name = rows[0].name
+        }
+        res.send({ success: true })
     })
-    
+
     router.get('/logout', (req, res) => {
         req.session.destroy()
-        res.send({success: true})
+        res.send({ success: true })
     })
-    
+
     router.get('/movieChars', (req, res) => {
         const rows = db.query(`SELECT * FROM users WHERE movie_character=1`)
         res.send({
@@ -40,16 +62,16 @@ const routerGenerator = (db) => {
             movieChars: rows
         })
     })
-    
+
     router.get('/userData', (req, res) => {
         const invitation_code = req.session.invitation_code
         const user_id = req.query.user_id
         const user = db.query(`SELECT * FROM users WHERE user_id=${user_id}`)
-        if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
-            res.send({success: false})
+        if (user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
+            res.send({ success: false })
             return
         }
-        
+
         res.send({
             success: true,
             sessionUser: user
@@ -60,29 +82,29 @@ const routerGenerator = (db) => {
         const invitation_code = req.session.invitation_code
         const user_id = req.session.user_id
         const user = db.query(`SELECT * FROM users WHERE user_id=${user_id}`)
-        if(user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
-            res.send({success: false})
+        if (user[0].invitation_code !== invitation_code && user[0].movie_character === 0) {
+            res.send({ success: false })
             return
         }
-        
+
         res.send({
             success: true,
             sessionUser: user
         })
     })
-    
+
     router.get('/reviews', alertLogin, (req, res) => {
         const to_user = req.query.to_user
-    
+
         const toUserData = db.query(`SELECT * FROM users WHERE user_id=${to_user}`)
-        if(toUserData.length == 0) {
+        if (toUserData.length == 0) {
             res.send({
                 success: false,
                 message: '해당 유저가 존재하지 않습니다!'
             })
             return
         }
-        else if(!toUserData[0].movie_character && to_user != req.session.user_id) {
+        else if (!toUserData[0].movie_character && to_user != req.session.user_id) {
             res.send({
                 success: false,
                 message: '다른 실제 인물의 리뷰를 볼 수 없습니다!'
@@ -90,8 +112,8 @@ const routerGenerator = (db) => {
             return
         }
 
-        if(toUserData[0].movie_character) { // for movie character review request
-            const rows = db.query(`
+        if (toUserData[0].movie_character) { // for movie character review request
+            let rows = db.query(`
                 SELECT 
                     r.review_id review_id,
                     r.rating review_rating,
@@ -110,10 +132,9 @@ const routerGenerator = (db) => {
                 ON r.to_user = tu.user_id
                 WHERE r.to_user=${to_user}
             `);
-            
-        
+
             const filtered = rows.map(row => {
-                if(row.review_locked) {
+                if (row.review_locked) {
                     row.review_rating = 0;
                     row.review_body = '잠겨 있는 리뷰입니다.';
                 }
@@ -121,27 +142,40 @@ const routerGenerator = (db) => {
             })
             res.send({
                 success: true,
-                reviews: filtered
+                reviews: filtered,
+                alertLowRating: 0
             })
         }
         else {  // for user review request
             const userData = db.query(`SELECT * FROM users WHERE user_id=${req.session.user_id}`)[0]
             const unlockedNum = userData.reviews_unlocked
-            
-            const userReviewData = JSON.parse(JSON.stringify(require('../database/basicReviews')))
+
+            let userReviewData = JSON.parse(JSON.stringify(require('../database/basicReviews')))
+            let alertLowRating = 0
+
+            if (unlockedNum >= 3 && userData.bad_changed) {
+                userReviewData[2] = require('../database/goodReview')
+            }
+            else if (unlockedNum >= 3 && !userData.bad_changed) {
+                alertLowRating = 1
+            }
 
             const filtered = userReviewData.map((review, i) => {
-                if(i < unlockedNum) {
+                if (i < unlockedNum) {
                     review.review_locked = 0
                 }
                 else {
                     review.review_rating = 0;
                     review.review_body = '잠겨 있는 리뷰입니다.';
                 }
+                if (review.admin && userData.director_unlocked !== 1) {
+                    review.review_rating = 0;
+                    review.review_body = '시스템 관리자만 접근할 수 있는 리뷰입니다.';
+                }
                 review.tu_name = userData.name
                 review.tu_rank = userData.rank
                 return review
-            }).slice(0, unlockedNum+1)
+            }).slice(0, unlockedNum + 1)
 
             const dbReviews = db.query(`
                 SELECT 
@@ -165,13 +199,14 @@ const routerGenerator = (db) => {
 
             res.send({
                 success: true,
-                reviews: [...filtered, ...dbReviews]
+                reviews: [...filtered, ...dbReviews],
+                alertLowRating
             })
 
         }
-    
+
     })
-    
+
     router.get('/notices', alertLogin, (req, res) => {
         const user_id = req.session.user_id;
         const basicNotices = require('../database/basicNotices')
@@ -188,40 +223,40 @@ const routerGenerator = (db) => {
             notices: [...rows, ...basicNotices]
         })
     })
-    
+
     router.post('/writeReview', alertLogin, (req, res) => {
         const from_user = req.session.user_id
         const to_user = req.body.to_user
         const rating = req.body.rating
         const body = req.body.body
-    
+
         const toUserData = db.query(`SELECT * FROM users WHERE user_id=${to_user}`)
-        if(toUserData.length == 0) {
+        if (toUserData.length == 0) {
             res.send({
                 success: false,
                 message: '해당 유저가 존재하지 않습니다!'
             })
             return
         }
-        else if(!toUserData[0].movie_character) {
+        else if (!toUserData[0].movie_character) {
             res.send({
                 success: false,
                 message: '실제 인물에게 리뷰를 달 수 없습니다!'
             })
             return
         }
-    
+
         const runResult = db.query(`
             INSERT INTO reviews
             (from_user, to_user, rating, body, removable, locked) VALUES
             (${from_user}, ${to_user}, ${rating}, '${body}', 1, 0)
         `)
-    
+
         res.send({
             success: true,
             result: runResult
         })
-    
+
     })
 
     router.get('/unlockReview', alertLogin, (req, res) => {
@@ -230,7 +265,7 @@ const routerGenerator = (db) => {
         const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
         const unlockedNum = db.query(`SELECT reviews_unlocked FROM users WHERE user_id=${user_id}`)[0].reviews_unlocked
         const targetReview = require('../database/basicReviews')[unlockedNum]
-        if(!nowLovecoin) {
+        if (!nowLovecoin) {
             res.send({
                 success: false,
                 message: "해당 유저가 존재하지 않습니다!"
@@ -238,7 +273,7 @@ const routerGenerator = (db) => {
             return
         }
 
-        if(nowLovecoin < targetReview.review_cost) {
+        if (nowLovecoin < targetReview.review_cost) {
             res.send({
                 success: false,
                 message: "보유 러브코인이 부족합니다!"
@@ -254,27 +289,27 @@ const routerGenerator = (db) => {
         res.send({
             success: true,
         })
-        
+
     })
-    
+
     router.get('/nowLovecoin', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
-    
+
         res.send({
             success: true,
             nowLovecoin: nowLovecoin
         })
     })
-    
+
     router.post('/addLovecoin', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const diffLovecoin = req.body.diffLovecoin
-        
+
         const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
         const afterLovecoin = nowLovecoin + diffLovecoin
-        
-        if(afterLovecoin < 0) {
+
+        if (afterLovecoin < 0) {
             res.send({
                 success: false,
                 message: '러브코인이 적어 작업을 수행할 수 없습니다!',
@@ -282,51 +317,51 @@ const routerGenerator = (db) => {
             })
             return
         }
-    
+
         db.query(`
             UPDATE users
             SET lovecoin=${afterLovecoin}
             WHERE user_id=${user_id}
         `)
-    
+
         const result = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
-    
+
         res.send({
             success: true,
             nowLovecoin: result
         })
-    
+
     })
-    
+
     router.get('/getMovieReviews', (req, res) => {
         const user_id = req.session.user_id
         const reviews = db.query(`SELECT * FROM movie_reviews ORDER BY movie_review_id DESC`)
-    
+
         const filtered = reviews.map(review => {
-            if(review.hidden && review.user_id != user_id) {
+            if (review.hidden && review.user_id != user_id) {
                 review.body = "비밀 댓글입니다."
             }
             return review
         })
-    
+
         res.send({
             success: true,
             reviews: filtered
         })
     })
-    
+
     router.post('/writeMovieReview', alertLogin, (req, res) => {
         const user_id = req.session.user_id
         const user_name = req.body.user_name
         const body = req.body.body
         const hidden = 0    //req.body.hidden
-    
+
         const runResult = db.query(`
             INSERT INTO movie_reviews
             (user_id, user_name, body, hidden) VALUES
             (${user_id}, '${user_name}', '${body}', ${hidden})
         `)
-    
+
         res.send({
             success: true,
             result: runResult
@@ -387,8 +422,8 @@ const routerGenerator = (db) => {
         const user_id = req.session.user_id
 
         const nowLovecoin = db.query(`SELECT lovecoin FROM users WHERE user_id=${user_id}`)[0].lovecoin
-        
-        if(nowLovecoin < BASIC_INCOME) {
+
+        if (nowLovecoin < BASIC_INCOME) {
             db.query(`UPDATE users SET lovecoin=${BASIC_INCOME} WHERE user_id=${user_id}`)
             res.send({ success: true })
         }
