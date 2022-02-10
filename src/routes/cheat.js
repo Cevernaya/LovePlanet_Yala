@@ -3,6 +3,18 @@ const express = require('express');
 const randomPraise = require('../database/randomPraise')
 const { forceLogin, alertLogin } = require('../utils/loginHandler')
 
+const cyrb53 = function (str, seed = 0) {
+    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+};
+
 
 const routerGenerator = (db) => {
     const router = express.Router()
@@ -86,6 +98,24 @@ const routerGenerator = (db) => {
         db.query(`INSERT INTO notices (user_id, title, body) VALUES (${user_id}, '회원 관리자 자격 부여 – AI 자동 리뷰 생성', '관리자에 의해 섬세한 리뷰 관리를 마쳤습니다. 즐거운 러브플래닛 이용 되세요!')`)
 
         res.send({ success: true })
+    })
+
+    router.get('/makeuser', (req, res) => {
+        if (req.session.user_id !== 1) {
+            res.send({ success: false })
+            return
+        }
+        const num = parseInt(req.query.num)
+        for (let i = 0; i < num; i++) {
+            const seed = +new Date() + i
+            const code = cyrb53(`${seed}`).toString(16).slice(0, 10).toUpperCase()
+
+            db.query(`INSERT INTO users (invitation_code) VALUES ('${code}')`)
+        }
+
+        res.send({
+            success: true
+        })
     })
 
     return router
