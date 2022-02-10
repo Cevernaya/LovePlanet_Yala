@@ -41,7 +41,7 @@
             <div class="content_row">
                 <div id="chart_wrapper" class="dashboard_box">
                     <div id="game_wrapper">
-                        <div class="help" onclick="window.open('https://coral-moonflower-995.notion.site/Lovecoin-Chart-b8af31ef83d14c6190190f2ef3e19e01')">Help?</div>
+                        <div class="help" onclick="helpOn()">Help?</div>
                     </div>
                 </div>
                 <div id="coin_info" class="dashboard_box">
@@ -56,7 +56,12 @@
                     <a target="_blank" href="https://www.kcgp.or.kr" class="addiction">도박 중독은 국번없이 1336<br>https://www.kcgp.or.kr<br>한국도박문제관리센터</a>
                 </div>
             </div>
-            
+            <div class="help_screen" id="help_screen">
+                <div class="help_close_button" onclick="helpOff()">Close</div>
+                <div class="help_body">
+                    <!-- help content -->
+                </div>
+            </div>
         </div>
 
     </div>

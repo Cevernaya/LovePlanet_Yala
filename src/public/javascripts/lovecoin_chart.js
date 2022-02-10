@@ -6,6 +6,18 @@ CANVAS.width = WRAPPER.clientWidth
 CANVAS.height = WRAPPER.clientHeight
 WRAPPER.appendChild(CANVAS)
 
+// Help screen overlay
+
+const helpOff = () => {
+    const help = document.getElementById('help_screen')
+    help.style.top = '-100%'
+}
+
+const helpOn = () => {
+    const help = document.getElementById('help_screen')
+    help.style.top = '0'
+}
+
 
 // INPUTS
 
