@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,29 +12,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
     <title>Love Planet</title>
 </head>
+
 <body>
-    <div class="screen">
-        <section>
-            <h1>
-                뭔가 대충 제목같은 문구
-            </h1>
-            <article>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere quibusdam reiciendis dignissimos dolorem! Iusto ducimus vel commodi tempora, explicabo suscipit exercitationem sunt beatae natus maiores. Blanditiis neque sapiente dolorem perspiciatis?
-            </article>
-        </section>
-        <main>
-            <div class="login_logo">
-                로고 부분
+    <div id="logo_section">
+        <h2 class="logo_text">WELCOME TO</h2>
+        <h1 class="logo_text">Love Planet</h1>
+        <h3 class="logo_text">당신의 사랑을 러브플래닛에서 찾아보세요.</h3>
+        <canvas id="logo_background">
+    </div>
+    <div id="info_section">
+        <div id="info_box">
+            <h1>Sign in</h1>
+            <h2>이름</h2>
+            <input id="name" type="text" placeholder="이름을 적어주세요.">
+            <h2>나이</h2>
+            <input id="age" type="number" placeholder="만 나이를 적어주세요.">
+            <h2>사는 곳</h2>
+            <input id="address" type="text" placeholder="간단한 거주 지역을 적어주세요.">
+            <h2>초대 코드</h2>
+            <div id="info_code">
+                <input id="invitation_code" type="text" placeholder="초대 코드로 로그인">
+                <button onclick="login()">로그인</button>
             </div>
-            <div id="form">
-                <div class="input_box">
-                    <input id="input" type="text" name="invitation_code" placeholder="초대 코드로 로그인"/>
-                    <div id="login_button" onclick="login()">로그인</div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
 </body>
 
 <script src="javascripts/login.js"></script>
+
 </html>
