@@ -98,20 +98,24 @@ fetch(`/data/${!user_id ? 'sessionUserData' : 'userData'}?user_id=${user_id}`)
             review_touser.setAttribute("value", `${user.user_id}`)
             review_touser.setAttribute("style", "display: none;")
             review_to.appendChild(review_touser)
-        } else if (user.lovecoin < 100) {
-            // free charging button when lovecoin < 100
-            const user_reset_coin = document.createElement("div")
-            user_reset_coin.className = "reset_coin"
-            user_reset_coin.innerText = "충전"
-            user_reset_coin.addEventListener("dblclick", charge)
-            user_reset_coin.addEventListener("mouseenter", mouseentered)
-            user_reset_coin.addEventListener("mouseleave", mouseleft)
-            const user_reset_hover = document.createElement("div")
-            user_reset_hover.innerHTML = '더블클릭으로 관리자에게 러브코인 구걸하기'
-            user_reset_hover.className = "reset_coin_popup"
-            user_reset_hover.id = "reset_popup"
-            user_body.appendChild(user_reset_hover)
-            user_body.appendChild(user_reset_coin)
+        } else {
+            const review_title = document.getElementById('title_text')
+            review_title.innerText = "My Reviews"
+            if (user.lovecoin < 100) {
+                // free charging button when lovecoin < 100
+                const user_reset_coin = document.createElement("div")
+                user_reset_coin.className = "reset_coin"
+                user_reset_coin.innerText = "충전"
+                user_reset_coin.addEventListener("dblclick", charge)
+                user_reset_coin.addEventListener("mouseenter", mouseentered)
+                user_reset_coin.addEventListener("mouseleave", mouseleft)
+                const user_reset_hover = document.createElement("div")
+                user_reset_hover.innerHTML = '더블클릭으로 관리자에게 러브코인 구걸하기'
+                user_reset_hover.className = "reset_coin_popup"
+                user_reset_hover.id = "reset_popup"
+                user_body.appendChild(user_reset_hover)
+                user_body.appendChild(user_reset_coin)
+            }
         }
 
         return user.user_id
