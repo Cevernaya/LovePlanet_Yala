@@ -24,11 +24,6 @@ li {
 .content_wrapper {
     overflow-y: hidden;
     height: 100%;
-
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
-    -webkit-mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: top;
 }
 
 .content_row {
@@ -71,6 +66,8 @@ li {
     min-width: 300px;
 
     padding: 20px 35px 20px 35px;
+
+    position: relative;
 }
 
 .dashboard_box hr {
@@ -86,6 +83,15 @@ li {
     padding-bottom: 12px;
     text-shadow: 0 3px 3px rgb(0, 0, 0, 0.1);
     margin-bottom: 10px;
+}
+
+.addiction {
+    font-size: 22px;
+    color: black;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    text-align: right;
 }
 
 .dashboard_semititle {
