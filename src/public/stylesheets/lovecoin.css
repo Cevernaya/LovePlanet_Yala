@@ -24,11 +24,6 @@ li {
 .content_wrapper {
     overflow-y: hidden;
     height: 100%;
-
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
-    -webkit-mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: top;
 }
 
 .content_row {
@@ -68,7 +63,7 @@ li {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 
     margin: 40px 40px 40px 40px;
-    min-width: 300px;
+    min-width: 200px;
 
     padding: 20px 35px 20px 35px;
 }
@@ -118,4 +113,40 @@ li {
     box-sizing: border-box;
 
     position: relative;
+}
+
+#now_lovecoin {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-left: 8px;
+}
+
+@media (max-width: 1900px) {
+
+    .dashboard_box {
+        margin: 40px 20px 40px 40px;
+    }
+
+    .dashboard_title {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    #now_lovecoin {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+
+    ol {
+        margin-top: 0;
+    }
+
+    li {
+        font-size: 16px;
+    }
+
+    .addiction {
+        font-size: 14px;
+        line-height: 16px;
+    }
 }

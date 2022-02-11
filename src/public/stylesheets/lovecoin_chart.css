@@ -51,7 +51,7 @@ li {
 }
 
 .help:hover {
-    background-color: rgb(255, 234, 234, 0.5);
+    background-color: rgba(255, 234, 234, 0.5);
     transform: translateY(-2px);
     transition-duration: 0.2s;
 }
@@ -65,7 +65,6 @@ li {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 
     margin: 40px 40px 40px 40px;
-    min-width: 300px;
 
     padding: 20px 35px 20px 35px;
 
@@ -127,6 +126,22 @@ li {
     position: relative;
 }
 
+#betting_coin {
+    width: 100px;
+}
+
+.dashboard_box button {
+    margin-left: 10px;
+    cursor: pointer;
+    border: 2px solid pink;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.dashboard_box button:hover {
+    background-color: rgb(255, 234, 234);
+}
+
 .help_screen {
     position: absolute;
     top: 0;
@@ -160,4 +175,39 @@ li {
     background-color: rgb(255, 234, 234, 0.5);
     transform: translateY(-2px);
     transition-duration: 0.2s;
+}
+
+#now_lovecoin {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-left: 8px;
+}
+
+@media (max-width: 1900px) {
+    .help {
+        top: 55px;
+    }
+
+    .dashboard_box {
+        margin: 40px 20px 40px 40px;
+    }
+
+    .dashboard_title {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    #now_lovecoin {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    li {
+        font-size: 16px;
+    }
+
+    .addiction {
+        font-size: 14px;
+        line-height: 16px;
+    }
 }
