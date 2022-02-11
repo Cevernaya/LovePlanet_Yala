@@ -8,6 +8,7 @@ const charge = () => {
     alert("제시카가 당신을 마음에 들어하지 않습니다...")
     alert("하지만 당신이 나락으로 떨어지는 모습을 한 번쯤 더 보고싶어하는 것 같군요!")
     alert("제시카는 당신에게 약간의 자비를 베풀어보기로 결정했습니다.")
+    alert("(Lovecoin Mining, Lovecoin Betting 메뉴에서 미니게임을 통해 러브코인을 벌 수 있습니다.)")
 
     fetch('/data/begBasicIncome')
         .then((response) => {

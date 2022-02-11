@@ -159,9 +159,10 @@ class Game {
         this.radius = 150
         this.bullets = []
         this.bulletGenerators = []
-        this.bulletInterval = 500
-        this.bulletIntervalDecay = 0.8
-        this.bulletIntervalMin = 200
+        this.bulletInitialInterval = 500
+        this.bulletInterval = this.bulletInitialInterval
+        this.bulletIntervalDecay = 0.99
+        this.bulletIntervalMin = 50
         this.bulletTimer = this.bulletInterval
         this.state = GAME_STATE.INIT
         this.score = 0
@@ -178,7 +179,7 @@ class Game {
         keyInputs.ArrowBottom = false
         keyInputs.ArrowLeft = false
 
-        this.bulletInterval = 500
+        this.bulletInterval = this.bulletInitialInterval
         this.state = GAME_STATE.GAMING
         this.score = 0
         this.player.x = this.center[0]
@@ -208,6 +209,7 @@ class Game {
     }
 
     update() {
+        console.log(this.bulletInterval)
         if ((this.state === GAME_STATE.INIT || this.state === GAME_STATE.OVER) && keyInputs.Space) {
             this.startGame()
         }
@@ -229,7 +231,7 @@ class Game {
             const nowGen = this.bulletGenerators[Math.floor(this.bulletGenerators.length * Math.random())]
             nowGen.generate()
             this.bulletTimer = this.bulletInterval
-            this.bulletInterval = Math.max(this.bulletInterval - this.bulletIntervalDecay, this.bulletIntervalMin)
+            this.bulletInterval = this.bulletIntervalMin + (this.bulletInterval - this.bulletIntervalMin) * this.bulletIntervalDecay
         }
         else this.bulletTimer -= dt * 1000
 
@@ -255,14 +257,14 @@ class Game {
         CTX.textBaseline = "top"
         CTX.font = "bold 48px solid"
         CTX.fillStyle = "rgba(255, 150, 150, 1)"
-        CTX.fillText(`Mining: ${this.score / 100}`, 20, 20)
+        CTX.fillText(`채굴한 코인: ${this.score / 100}`, 20, 20)
 
         if (this.state == GAME_STATE.INIT) {
             CTX.textAlign = "center"
             CTX.textBaseline = "top"
             CTX.font = "bold 20px solid"
             CTX.fillStyle = "rgba(100, 100, 100, 0.7)"
-            CTX.fillText("Press Space to Start", CANVAS.width / 2, CANVAS.height / 2 + 40)
+            CTX.fillText("Space 키를 눌러 시작하세요", CANVAS.width / 2, CANVAS.height / 2 + 40)
         }
 
         if (this.state == GAME_STATE.OVER) {
@@ -270,7 +272,7 @@ class Game {
             CTX.textBaseline = "top"
             CTX.font = "bold 20px solid"
             CTX.fillStyle = "rgba(100, 100, 100, 0.7)"
-            CTX.fillText("Press Space to Restart", CANVAS.width / 2, CANVAS.height / 2 + 40)
+            CTX.fillText("Space 키를 눌러 다시 시작하세요", CANVAS.width / 2, CANVAS.height / 2 + 40)
         }
     }
 }

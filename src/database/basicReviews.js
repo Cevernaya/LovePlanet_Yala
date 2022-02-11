@@ -44,7 +44,7 @@ module.exports = [
         review_rating: 5,
         review_body: '메모... 관리자 페이지 링크는 http://loveplanet.5iq.cc/cheat',
         review_locked: 1,
-        review_cost: 2000,
+        review_cost: 1500,
         fu_profile_image: '05.jpg',
         fu_rank: 10,
         fu_name: 'Jessica',
