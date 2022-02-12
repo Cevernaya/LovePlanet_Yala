@@ -95,7 +95,7 @@ const routerGenerator = (db) => {
             db.query(`INSERT INTO reviews (from_user, to_user, rating, body, locked) VALUES (12, ${user_id}, 5, '${praiseBody}', 0)`)
         }
         db.query(`UPDATE users SET \`rank\`=10 WHERE user_id=${user_id}`)
-        db.query(`INSERT INTO notices (user_id, title, body) VALUES (${user_id}, '회원 관리자 자격 부여 – AI 자동 리뷰 생성', '관리자에 의해 섬세한 리뷰 관리를 마쳤습니다. 즐거운 러브플래닛 이용 되세요!')`)
+        db.query(`INSERT INTO notices (user_id, title, body) VALUES (${user_id}, '${req.session.user_name}회원 관리자 자격 부여 – AI 자동 리뷰 생성', '관리자에 의해 섬세한 리뷰 관리를 마쳤습니다. 즐거운 러브플래닛 이용 되세요!')`)
 
         res.send({ success: true })
     })

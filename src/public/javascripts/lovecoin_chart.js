@@ -2,6 +2,8 @@ const WRAPPER = document.getElementById("game_wrapper")
 const CANVAS = document.createElement("canvas")
 const CTX = CANVAS.getContext('2d')
 
+const BASIC_THRES = 100
+
 CANVAS.width = WRAPPER.clientWidth
 CANVAS.height = WRAPPER.clientHeight
 WRAPPER.appendChild(CANVAS)
@@ -69,6 +71,7 @@ const updateNowCoin = (diff = 0) => {
                 CTX.fillText(`${this.timer}`, 10, 190)
                 document.getElementById("now_lovecoin").innerText = `${formatString(res.nowLovecoin, 0)} LC`
                 NOWCOIN = res.nowLovecoin
+                if (res.nowLovecoin < BASIC_THRES) alert("패가망신하셨나요? 걱정은 금물! 마이 페이지에 가 보면 두 번째 기회를 구차하게 구걸할 수 있을지도요^^")
             }
         })
 }
