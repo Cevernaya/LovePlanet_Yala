@@ -32,6 +32,11 @@ window.onkeydown = (e) => {
             INPUTS.Space = true
             break;
         }
+
+        case "Enter": {
+            INPUTS.bet = true
+            break;
+        }
     }
 }
 
