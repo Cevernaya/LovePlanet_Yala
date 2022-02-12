@@ -23,6 +23,7 @@
                 <div class="menu_list">
                     <ul id="menu_list_wrapper">
                         <li><a href="/">Dashboard</a></li>
+                        <li><a href="/userShow">My page</a></li>
                         <li><a href="/announce">Notices</a></li>
                         <hr>
                         <li><a href="/lovecoin">Lovecoin Mining</a></li>
@@ -40,21 +41,36 @@
             <div class="content_row">
                 <div id="chart_wrapper" class="dashboard_box">
                     <div id="game_wrapper">
-                        <div class="help" onclick="window.open('https://coral-moonflower-995.notion.site/Lovecoin-Chart-b8af31ef83d14c6190190f2ef3e19e01')">Help?</div>
+                        <div class="help" onclick="helpOn()">Help?</div>
                     </div>
                 </div>
                 <div id="coin_info" class="dashboard_box">
                     <div class="dashboard_title">My Lovecoin</div>
-                    <div id="now_lovecoin" style="font-size: 24px; margin-bottom: 24px; padding-left: 8px;">300 LC</div>
+                    <div id="now_lovecoin">300 LC</div>
                     <div class="dashboard_title">Bet</div>
                     <input type="number" id="betting_coin"><button onclick="INPUTS.bet = true">Go!</button>
                     <div class="dashboard_title" id="ranking" style="margin-top: 16px;">Ranking</div>
                     <ol id="graph_rank">
                         <li>박찬정: 9.7배</li>
                     </ol>
+                    <a target="_blank" href="https://www.kcgp.or.kr" class="addiction">도박 중독은 국번없이 1336<br>https://www.kcgp.or.kr<br>한국도박문제관리센터</a>
                 </div>
             </div>
-            
+            <div class="help_screen" id="help_screen">
+                <div class="help_close_button" onclick="helpOff()">Close</div>
+                <div class="help_body">
+                    <h1>Lovecoin Betting</h1>
+                    <p>1. 라운드 대기 시간에는 오른쪽 입력창을 통해 보유한 lovecoin을 원하는 만큼 베팅할 수 있습니다.</p>
+                    <p>2. 라운드가 시작되면 화면의 그래프와 배수가 상승합니다.</p>
+                    <p>3. 하지만 라운드는 언제 끝날 지 모릅니다! 라운드가 끝나기 전에 스페이스바를 눌러 해당 배수만큼 코인을 돌려받고 빠져나오세요.</p>
+                    <p>4. 라운드가 끝나면 이번 라운드에서 얻은 본인의 손익을 알려줍니다.</p>
+                    <hr>
+                    <h2>주의사항</h2>
+                    <p>○ 베팅을 하지 않았더라도 라운드는 진행됩니다. 올라타지 못한 비행기는 돌아오지 않는 법~</p>
+                    <p>○ 라운드가 끝날 때까지 스페이스바를 눌러 빠져나오지 못했다면 베팅한 러브코인은 사라집니다!</p>
+                    <img class="betting_help_img" src="images/betting_help.png" alt="help image for betting">
+                </div>
+            </div>
         </div>
 
     </div>
