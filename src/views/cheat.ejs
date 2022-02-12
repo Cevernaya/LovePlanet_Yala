@@ -12,7 +12,7 @@
     <h1>유저 상세 관리 페이지</h1>
     <p>※러브플래닛 서비스 관리자용※</p>
     <h2>악성 리뷰 제거</h2>
-    <p>나쁜 평가를 준 리뷰를 제거합니다.</p>
+    <p>나쁜 평가를 준 리뷰를 은밀히 처리합니다.</p>
     <button onclick="deleteBadReview()">읍,, 읍읍,,!!</button>
     <h2>나의 리뷰 모두 잠금해제</h2>
     <button onclick="unlockAll()">해제!</button>
@@ -27,7 +27,7 @@
             fetch('/cheat/unlockEveryReview')
                 .then(res => res.json())
                 .then(res => {
-                    if (res.success) alert("성공!")
+                    if (res.success) location.href = "/userShow"
                     else alert("실패...(예기치 못한 서버 문제입니다)")
                 })
         }
@@ -36,7 +36,7 @@
             fetch('/cheat/resetReview')
                 .then(res => res.json())
                 .then(res => {
-                    if (res.success) alert("성공!")
+                    if (res.success) location.href = "/userShow"
                     else alert("실패...(예기치 못한 서버 문제입니다)")
                 })
         }
@@ -45,7 +45,7 @@
             fetch('/cheat/deleteBadReview')
                 .then(res => res.json())
                 .then(res => {
-                    if (res.success) alert("성공!")
+                    if (res.success) location.href = "/userShow"
                     else alert("실패...(예기치 못한 서버 문제입니다)")
                 })
         }
@@ -54,7 +54,7 @@
             fetch('/cheat/copyLovecoin')
                 .then(res => res.json())
                 .then(res => {
-                    if (res.success) alert("성공!")
+                    if (res.success) location.href = "/userShow"
                     else alert("실패...(예기치 못한 서버 문제입니다)")
                 })
         }
@@ -63,7 +63,7 @@
             fetch('/cheat/aiReview')
                 .then(res => res.json())
                 .then(res => {
-                    if (res.success) alert("성공!")
+                    if (res.success) location.href = "/userShow"
                     else alert("실패...(예기치 못한 서버 문제입니다)")
                 })
         }

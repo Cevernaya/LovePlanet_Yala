@@ -67,7 +67,7 @@ const updateNowCoin = (diff = 0) => {
         .then(res => {
             if (res.success) {
                 CTX.fillText(`${this.timer}`, 10, 190)
-                document.getElementById("now_lovecoin").innerText = `${formatString(res.nowLovecoin, 5)} LC`
+                document.getElementById("now_lovecoin").innerText = `${formatString(res.nowLovecoin, 0)} LC`
                 NOWCOIN = res.nowLovecoin
             }
         })

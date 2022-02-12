@@ -51,7 +51,7 @@ const updateNowCoin = (diff = 0) => {
         .then(res => {
             if (res.success) {
                 CTX.fillText(`${this.timer}`, 10, 190)
-                document.getElementById("now_lovecoin").innerText = `${formatString(res.nowLovecoin, 5)} LC`
+                document.getElementById("now_lovecoin").innerText = `${formatString(res.nowLovecoin, 0)} LC`
                 NOWCOIN = res.nowLovecoin
             }
         })
@@ -221,7 +221,6 @@ class Game {
     }
 
     update() {
-        console.log(this.bulletInterval)
         if ((this.state === GAME_STATE.INIT || this.state === GAME_STATE.OVER) && keyInputs.Space) {
             this.startGame()
         }
