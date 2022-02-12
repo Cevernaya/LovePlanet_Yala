@@ -150,6 +150,7 @@ input {
   border-radius: 5px;
 
   font-size: 18px;
+  cursor: pointer;
 }
 #info_code button:hover {
   background-color: pink;

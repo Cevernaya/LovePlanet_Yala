@@ -146,12 +146,45 @@ li {
     position: absolute;
     top: 0;
     margin: 2%;
-    width: 96%;
-    height: 94%;
+    width: calc(96% - 60px);
+    height: calc(94% - 60px);
+    padding: 30px;
     background-color: rgb(255, 243, 243);
     border-radius: 20px;
     box-shadow: 0 4px 16px 0 rgb(31 38 135 / 37%);
     transition: ease 1s;
+}
+
+.help_body {
+    word-break: keep-all;
+}
+
+.help_body h1 {
+    margin: 20px 0 0 20px;
+    font-size: 50px;
+}
+
+.help_body h2 {
+    margin: 50px 0 0 20px;
+    font-size: 36px;
+}
+
+.help_body p {
+    display: block;
+    font-size: 28px;
+    margin: 60px 0 0 10px;
+}
+
+.help_body p:nth-child(5) {
+    margin-bottom: 60px;
+}
+
+.betting_help_img {
+    position: absolute;
+    top: 85px;
+    right: 80px;
+    border-radius: 20px;
+    border: 1px solid pink;
 }
 
 .help_close_button {
@@ -169,6 +202,7 @@ li {
     line-height: 40px;
     text-align: center;
     cursor: pointer;
+    z-index: 1;
 }
 
 .help_close_button:hover {
@@ -209,5 +243,40 @@ li {
     .addiction {
         font-size: 14px;
         line-height: 16px;
+    }
+
+    .help_body h1 {
+        margin: 0 0 0 20px;
+        font-size: 36px;
+    }
+
+    .help_body h2 {
+        margin: 20px 0 0 20px;
+        font-size: 28px;
+    }
+
+    .help_body p {
+        margin: 35px 0 0 10px;
+        font-size: 20px;
+    }
+
+    .help_body p:nth-child(5) {
+        margin-bottom: 40px;
+    }
+
+    .betting_help_img {
+        width: 152px;
+        height: 116px;
+        top: 90px;
+        right: 32px;
+    }
+
+    .help_close_button {
+        width: 60px;
+        height: 30px;
+        padding: 8px;
+        font-size: 24px;
+        line-height: 30px;
+        border: 3px solid pink;
     }
 }

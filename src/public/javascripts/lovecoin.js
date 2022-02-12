@@ -7,6 +7,18 @@ CANVAS.height = Math.min(WRAPPER.clientWidth, WRAPPER.clientHeight)
 WRAPPER.appendChild(CANVAS)
 
 
+// Help screen overlay
+
+const helpOff = () => {
+    const help = document.getElementById('help_screen')
+    help.style.top = '-100%'
+}
+
+const helpOn = () => {
+    const help = document.getElementById('help_screen')
+    help.style.top = '0'
+}
+
 // UTILS
 
 const smultVec = (point, scalar) => [scalar * point[0], scalar * point[1]]
