@@ -158,7 +158,7 @@ li {
 }
 
 .help_close_button:hover {
-    background-color: rgb(255, 234, 234, 0.5);
+    background-color: rgb(255, 234, 234);
     transform: translateY(-2px);
     transition-duration: 0.2s;
 }
@@ -206,5 +206,14 @@ li {
     .help_screen p {
         font-size: 24px;
         margin: 70px 0 0 10px;
+    }
+
+    .help_close_button {
+        width: 60px;
+        height: 30px;
+        padding: 8px;
+        font-size: 24px;
+        line-height: 30px;
+        border: 3px solid pink;
     }
 }
