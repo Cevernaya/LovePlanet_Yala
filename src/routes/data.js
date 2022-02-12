@@ -171,6 +171,7 @@ const routerGenerator = (db) => {
                 }
                 if (review.admin && userData.director_unlocked !== 1) {
                     review.review_rating = 0;
+                    review.fu_name = '숨겨진 리뷰';
                     review.review_body = '시스템 관리자만 접근할 수 있는 리뷰입니다.';
                 }
                 review.tu_name = userData.name

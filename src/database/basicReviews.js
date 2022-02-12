@@ -66,5 +66,18 @@ module.exports = [
         fu_name: '황예정 aka 연출',
         tu_rank: 0,
         tu_name: ''
+    },
+    {
+        admin: 1,
+        review_id: 0,
+        review_rating: 5,
+        review_body: `편지2`,
+        review_locked: 1,
+        review_cost: 100,
+        fu_profile_image: '02.jpg',
+        fu_rank: 10,
+        fu_name: '조연출님',
+        tu_rank: 0,
+        tu_name: ''
     }
 ]
