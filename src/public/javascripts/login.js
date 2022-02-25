@@ -13,6 +13,7 @@ const login = () => {
         return response.json()
     }).then((response) => {
         if (response.success == true) {
+            alert("러브플래닛에 오신 것을 환영합니다!\nMy Page에서 서비스 사용 방법을 확인해주세요.")
             location.replace("/")
         } else {
             alert("초대 코드를 확인해 주세요")
